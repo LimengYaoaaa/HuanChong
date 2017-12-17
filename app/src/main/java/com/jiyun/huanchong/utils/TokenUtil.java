@@ -8,7 +8,8 @@ package com.jiyun.huanchong.utils;
 
 import android.content.Context;
 
-import com.jiyun.huanpet.app.App;
+
+import com.jiyun.huanchong.app.App;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -12,7 +12,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-import com.jiyun.huanpet.app.App;
+import com.jiyun.huanchong.app.App;
 
 /**
  * @描述 :网络判断工具
