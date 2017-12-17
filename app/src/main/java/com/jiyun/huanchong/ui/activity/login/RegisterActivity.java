@@ -5,11 +5,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiyun.huanchong.R;
+import com.jiyun.huanchong.presenter.RegisterPresenter;
+import com.jiyun.huanchong.presenter.RegisterPresenterImpl;
+import com.jiyun.huanchong.ui.activity.bean.RegisterBean;
 import com.jiyun.huanchong.ui.base.BaseActivity;
+import com.jiyun.huanchong.ui.view.RegisterView;
+import com.jiyun.huanchong.utils.CJSON;
+import com.jiyun.huanchong.utils.ConnectionUtils;
 
-public class RegisterActivity extends BaseActivity implements View.OnClickListener {
+import java.util.HashMap;
+import java.util.Map;
+
+public class RegisterActivity extends BaseActivity implements View.OnClickListener,RegisterView {
 
     private TextView mRegisterBack;
     private TextView mRegisterLogin;
@@ -21,7 +31,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private Button mBtnRegister;
     private TextView mWxRegister;
     private TextView mQQRegister;
-
+    private RegisterPresenter registerPresenter;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_register;
@@ -44,6 +54,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void init() {
         mRegisterBack.setOnClickListener(this);
+        mRegisterLogin.setOnClickListener(this);
+        mBtnRegister.setOnClickListener(this);
+        mWxRegister.setOnClickListener(this);
+        mQQRegister.setOnClickListener(this);
+        registerPresenter=new RegisterPresenterImpl(this);
     }
 
     @Override
@@ -54,7 +69,33 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.mRegisterBack:
+                finish();
+                break;
+            case R.id.mRegisterLogin:
+                finish();
+                break;
+            case R.id.mBtnRegister:
+                registerPresenter.register(inputPhoneNum.getText().toString().trim(),
+                        inputUserName.getText().toString().trim(),
+                        inputPassword.getText().toString().trim());
+                break;
+            case R.id.mWxRegister:
 
+                break;
+            case R.id.mQQRegister:
+
+                break;
         }
+    }
+
+    @Override
+    public void onSuccess(RegisterBean registerBean) {
+        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFailure(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 }

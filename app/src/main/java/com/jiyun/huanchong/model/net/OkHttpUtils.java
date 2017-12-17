@@ -2,10 +2,12 @@ package com.jiyun.huanchong.model.net;
 
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.jiyun.huanchong.model.api.HttpCallback;
 import com.jiyun.huanchong.model.api.HttpRequest;
+import com.jiyun.huanchong.utils.CJSON;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -148,6 +150,7 @@ public class OkHttpUtils implements HttpRequest {
     public <T> void post(String url, Map<String, String> headers, Map<String, String> params, final HttpCallback<T> callback) {
         Request.Builder builder = new Request.Builder();
         FormBody.Builder bodyBuilder = new FormBody.Builder();
+
         if (headers==null||headers.size()==0){
             throw new NullPointerException("请求头不能为空");
         }
@@ -213,6 +216,33 @@ public class OkHttpUtils implements HttpRequest {
             }
         });
     }
+
+    @Override
+    public <T> void login(String url, Map<String, Object> params, final HttpCallback<T> callback) {
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        FormBody formBody = new FormBody.Builder().add("data", CJSON.toJSONMap(params)).build();
+        Request request = new Request.Builder().url(url).post(formBody).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                final String string = response.body().string();
+                Log.e("erra",string);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.success(getGeneric(string,callback));
+                    }
+                });
+            }
+        });
+    }
+
     private Cache getCache(){
         File file=new File(Environment.getExternalStorageDirectory()+"/Cache","responses");
         Cache cache = new Cache(file, 10 * 1024 * 1024);
@@ -229,7 +259,7 @@ public class OkHttpUtils implements HttpRequest {
         url = buffer.substring(0, buffer.length() - 1);
         return url;
     }
-    private void addHeader(Request.Builder builder, Map<String,String> headers){
+    private void addHeader(Request.Builder builder,Map<String,String> headers){
         Set<String> keys = headers.keySet();
         for (String key:keys) {
             String value = headers.get(key);
