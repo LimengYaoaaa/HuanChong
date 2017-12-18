@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/inputPhoneNum"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -52,7 +52,7 @@
             android:hint="请输入手机号"
             android:textColorHint="#bcb9b9" />
         <TextView
-            android:id="@+id/mGetCheckCode"
+            android:id="@+id/getCheckCode"
             android:background="@drawable/check_code_shape"
             android:layout_width="120dp"
             android:layout_height="40dp"
@@ -70,6 +70,7 @@
         android:hint="请输入验证码"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:id="@+id/inputCheckCode"
         android:background="@drawable/login_edit_shape"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
@@ -78,6 +79,7 @@
         android:hint="请输入用户名"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:id="@+id/inputUserName"
         android:background="@drawable/login_edit_shape"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
@@ -86,6 +88,7 @@
         android:hint="请输入6位数字密码"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:id="@+id/inputPassword"
         android:background="@drawable/login_edit_shape"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>

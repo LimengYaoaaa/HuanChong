@@ -18,6 +18,27 @@
         </activity>
         <activity android:name=".ui.activity.home.HomeActivity" />
         <activity android:name=".ui.activity.login.RegisterActivity"></activity>
+        <activity android:name=".ui.activity.login.BindPhoneActivity"></activity>
+        <activity android:name=".ui.activity.login.LoginActivity"></activity>
+        <activity android:name=".ui.activity.fosterteacher.FosterteacherActivity"></activity>
+        <activity android:name=".ui.activity.konw.KonwActivity"></activity>
+        <activity android:name=".ui.activity.news.NewsActivity"></activity>
+        <activity android:name=".ui.activity.news.ChatInterfaceActivity"></activity>
+        <activity android:name=".ui.activity.order.OrderActivity"></activity>
+        <activity android:name=".ui.activity.order.OrderdetailsActivity"></activity>
+        <activity android:name=".ui.activity.order.EvaluatessuccessActivity"></activity>
+        <activity android:name=".ui.activity.personalInfomation.PersonalInfomationActivity"></activity>
+        <activity android:name=".ui.activity.personalInfomation.UpdateAddressActivity"></activity>
+        <activity android:name=".ui.activity.personalInfomation.UpdateUserNameActivity"></activity>
+        <activity android:name=".ui.activity.pet.AddPetActivity"></activity>
+        <activity android:name=".ui.activity.pet.PetActivity"></activity>
+        <activity android:name=".ui.activity.pet.PetMianYiActivity"></activity>
+        <activity android:name=".ui.activity.pet.PetTypeActivity"></activity>
+        <activity android:name=".ui.activity.setting.SettingActivity"></activity>
+        <activity android:name=".ui.activity.wallet.WalletActivity"></activity>
+        <activity android:name=".ui.activity.wallet.ProposalActivity"></activity>
+
+
     </application>
 
 </manifest>
