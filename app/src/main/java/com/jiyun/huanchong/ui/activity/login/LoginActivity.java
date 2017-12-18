@@ -127,9 +127,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         @Override
         public void onSuccess (LoginBean loginBean){
-            Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
-            SharedUtils.saveUserInfo(this, loginBean.getResult().getUserPhone(), loginBean.getResult().getUserName(), loginBean.getResult().getUserId(), loginBean.getResult().getUserSex());
-            startActivity(new Intent(this, HomeActivity.class));
+            boolean ret = loginBean.isRet();
+            if (ret){
+                Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
+                SharedUtils.saveUserInfo(this, loginBean.getResult().getUserPhone(), loginBean.getResult().getUserName(), loginBean.getResult().getUserId(), loginBean.getResult().getUserSex());
+                startActivity(new Intent(this, HomeActivity.class));
+            }else{
+                Toast.makeText(this, "登陆失败", Toast.LENGTH_SHORT).show();
+            }
+
+
         }
 
         @Override

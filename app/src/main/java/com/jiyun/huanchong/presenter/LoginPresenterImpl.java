@@ -29,7 +29,12 @@ public class LoginPresenterImpl implements LoginPresenter {
 
             @Override
             public void success(LoginBean loginBean) {
-                loginView.onSuccess(loginBean);
+                if (loginBean!=null){
+                    loginView.onSuccess(loginBean);
+                }else{
+                    loginView.onFailure("登陆失败,密码错误");
+                }
+
             }
 
             @Override
