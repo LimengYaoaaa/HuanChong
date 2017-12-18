@@ -20,4 +20,12 @@ public class RegisterModelImpl implements RegisterModel {
         params.put("password",password);
         OkHttpUtils.getInstance().login(Urls.BASEURL+"user/register.jhtml",params,callback);
     }
+
+    @Override
+    public <T> void login(String phone, String password, HttpCallback<T> callback) {
+        Map<String,Object> params=new HashMap<>();
+        params.put("userPhone",phone);
+        params.put("password",password);
+        OkHttpUtils.getInstance().login(Urls.BASEURL+"user/login.jhtml",params,callback);
+    }
 }
