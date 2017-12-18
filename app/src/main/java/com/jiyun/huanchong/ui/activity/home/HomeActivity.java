@@ -58,7 +58,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private String username;
     private String iconurl;
     private String name;
-
+    private String phone;
+    private boolean isLogin;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_home;
@@ -97,6 +98,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mMenuPhone.setText(phone);
             mInfomation.setVisibility(View.VISIBLE);
             mBtnSwitchUser.setVisibility(View.VISIBLE);
+            isLogin=true;
         }
         if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
             Glide.with(this).load(iconurl).into(mMenuHead);
@@ -104,6 +106,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mNoLoginContainer.setVisibility(View.GONE);
             mInfomation.setVisibility(View.VISIBLE);
             mBtnSwitchUser.setVisibility(View.VISIBLE);
+            isLogin=true;
         }
         mPersonalCenter.setOnClickListener(HomeActivity.this);
         mInfomation.setOnClickListener(this);
@@ -253,80 +256,60 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+//        SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+//        SharedPreferences disanfangInfo = getSharedPreferences("disanfangInfo", MODE_PRIVATE);
+//        username = userInfo.getString("username", null);
+//        phone = userInfo.getString("phone", null);
+//        iconurl = disanfangInfo.getString("iconurl", null);
+//        name = disanfangInfo.getString("name", null);
         switch (v.getId()) {
             case R.id.mInfomation:
                 startActivity(new Intent(this, PersonalInfomationActivity.class));
                 break;
             case R.id.mMessageContainer:
-                if (username !=null&&!username.equals("")){
+                if (isLogin){
+                    startActivity(new Intent(this, NewsActivity.class));
+                }else{
                     startActivity(new Intent(this,LoginActivity.class));
-                    return;
                 }
-                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
-                startActivity(new Intent(this, NewsActivity.class));
                 break;
             case R.id.mPetContainer:
-                if (username !=null&&!username.equals("")){
+                if (isLogin){
+                    startActivity(new Intent(this, PetActivity.class));
+                }else{
                     startActivity(new Intent(this,LoginActivity.class));
-                    return;
                 }
-                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
-                startActivity(new Intent(this, PetActivity.class));
-
                 break;
             case R.id.mOrderContainer:
-                if (username !=null&&!username.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
-                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
-                startActivity(new Intent(this, OrderActivity.class));
 
+                if (isLogin){
+                    startActivity(new Intent(this, OrderActivity.class));
+                }else{
+                    startActivity(new Intent(this,LoginActivity.class));
+                }
                 break;
             case R.id.mWalletContainer:
-                if (username !=null&&!username.equals("")){
+                if (isLogin){
+                    startActivity(new Intent(this, WalletActivity.class));
+                }else{
                     startActivity(new Intent(this,LoginActivity.class));
-                    return;
                 }
-                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
-                startActivity(new Intent(this, WalletActivity.class));
-
                 break;
             case R.id.mKonwContainer:
-                if (username !=null&&!username.equals("")){
+                if (isLogin){
+                    startActivity(new Intent(this, KonwActivity.class));
+                }else{
                     startActivity(new Intent(this,LoginActivity.class));
-                    return;
                 }
-                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
-                startActivity(new Intent(this, KonwActivity.class));
                 break;
             case R.id.mSettingContainer:
-                startActivity(new Intent(this, SettingActivity.class));
+                if (isLogin){
+                    startActivity(new Intent(this, SettingActivity.class));
+                }else{
+                    startActivity(new Intent(this,LoginActivity.class));
+                }
                 break;
             case R.id.mBtnSwitchUser:
-                if (username !=null&&!username.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
-                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
-                    startActivity(new Intent(this,LoginActivity.class));
-                    return;
-                }
                 startActivity(new Intent(this, FosterteacherActivity.class));
                 break;
             case R.id.mNoLoginContainer:
