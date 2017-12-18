@@ -84,7 +84,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     startActivity(new Intent(this, RegisterActivity.class));
                     break;
                 case R.id.mForgetWord:
-
+                    startActivity(new Intent(LoginActivity.this,ForgetActivity.class));
                     break;
                 case R.id.mWxLogin:
 
@@ -122,6 +122,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     loginPresenter.login(mLoginPhoneEdit.getText().toString().trim(),
                             mLoginPassWordEdit.getText().toString().trim());
                     break;
+
             }
         }
 

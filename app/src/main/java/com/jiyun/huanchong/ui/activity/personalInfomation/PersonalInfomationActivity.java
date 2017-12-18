@@ -1,8 +1,13 @@
 package com.jiyun.huanchong.ui.activity.personalInfomation;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.jiyun.huanchong.R;
@@ -28,6 +33,8 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
     private RelativeLayout mPersonalQq;
     private RelativeLayout mContractAddress;
     private final int requestCode=100;
+    private PopupWindow pop;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_personal_infomation;
@@ -73,6 +80,21 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
                 finish();
                 break;
             case R.id.head_portrait:
+                View inflate = LayoutInflater.from(this).inflate(R.layout.popup, null);
+                pop = new PopupWindow(inflate,
+                        WindowManager.LayoutParams.MATCH_PARENT,
+                        WindowManager.LayoutParams.MATCH_PARENT,
+                        true);
+                pop.setBackgroundDrawable(new ColorDrawable(0xffffff));//支持点击Back虚拟键退出
+                pop.showAtLocation(inflate, Gravity.BOTTOM, 0, 0);
+                startAlphAnimotion();
+
+                pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        endAlphAnimotion();
+                    }
+                });
 
                 break;
             case R.id.mPersonalUserName:
@@ -97,5 +119,19 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
                 startActivityForResult(new Intent(this,UpdateAddressActivity.class),requestCode);
                 break;
         }
+    }
+    //改变屏幕透明度
+    public void startAlphAnimotion() {
+        WindowManager.LayoutParams ll = getWindow().getAttributes();
+        ll.alpha = 0.7f;
+        getWindow().setAttributes(ll);
+    }
+
+
+    //恢复屏幕透明度
+    public void endAlphAnimotion() {
+        WindowManager.LayoutParams ll = getWindow().getAttributes();
+        ll.alpha = 1;
+        getWindow().setAttributes(ll);
     }
 }
