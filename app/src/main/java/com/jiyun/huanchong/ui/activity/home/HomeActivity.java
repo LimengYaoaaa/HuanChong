@@ -1,6 +1,7 @@
 package com.jiyun.huanchong.ui.activity.home;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.ui.activity.fosterteacher.FosterteacherActivity;
 import com.jiyun.huanchong.ui.activity.news.NewsActivity;
@@ -25,6 +27,7 @@ import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.zaaach.citypicker.CityPickerActivity;
 
 import static com.jiyun.huanchong.constants.Constants.REQUESTCODE;
+import static com.umeng.qq.handler.a.m;
 
 /**
  * Created by mengYao on 2017/12/17.
@@ -52,6 +55,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private Boolean state = false;
     private static final int REQUEST_CODE_PICK_CITY = 0;
     private TextView tv2;
+    private String username;
+    private String iconurl;
+    private String name;
 
     @Override
     protected int getLayoutId() {
@@ -77,6 +83,28 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         fujinyouxuan = (ImageView) findViewById(R.id.fujinyouxuan);
         chongwuleixing = (ImageView) findViewById(R.id.chongwuleixing);
         shaixuan = (ImageView) findViewById(R.id.shaixuan);
+        mInfomation.setVisibility(View.GONE);
+        mBtnSwitchUser.setVisibility(View.GONE);
+        SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences disanfangInfo = getSharedPreferences("disanfangInfo", MODE_PRIVATE);
+        username = userInfo.getString("username", null);
+        String phone = userInfo.getString("phone", null);
+        iconurl = disanfangInfo.getString("iconurl", null);
+        name = disanfangInfo.getString("name", null);
+        if (username !=null&&!username.equals("")&&phone!=null){
+            mMenuName.setText(username);
+            mNoLoginContainer.setVisibility(View.GONE);
+            mMenuPhone.setText(phone);
+            mInfomation.setVisibility(View.VISIBLE);
+            mBtnSwitchUser.setVisibility(View.VISIBLE);
+        }
+        if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+            Glide.with(this).load(iconurl).into(mMenuHead);
+            mMenuName.setText(name);
+            mNoLoginContainer.setVisibility(View.GONE);
+            mInfomation.setVisibility(View.VISIBLE);
+            mBtnSwitchUser.setVisibility(View.VISIBLE);
+        }
         mPersonalCenter.setOnClickListener(HomeActivity.this);
         mInfomation.setOnClickListener(this);
         mMessageContainer.setOnClickListener(this);
@@ -230,31 +258,79 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(this, PersonalInfomationActivity.class));
                 break;
             case R.id.mMessageContainer:
+                if (username !=null&&!username.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
+                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
                 startActivity(new Intent(this, NewsActivity.class));
                 break;
             case R.id.mPetContainer:
+                if (username !=null&&!username.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
+                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
                 startActivity(new Intent(this, PetActivity.class));
 
                 break;
             case R.id.mOrderContainer:
+                if (username !=null&&!username.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
+                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
                 startActivity(new Intent(this, OrderActivity.class));
 
                 break;
             case R.id.mWalletContainer:
+                if (username !=null&&!username.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
+                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
                 startActivity(new Intent(this, WalletActivity.class));
 
                 break;
             case R.id.mKonwContainer:
+                if (username !=null&&!username.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
+                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
                 startActivity(new Intent(this, KonwActivity.class));
                 break;
             case R.id.mSettingContainer:
                 startActivity(new Intent(this, SettingActivity.class));
                 break;
             case R.id.mBtnSwitchUser:
+                if (username !=null&&!username.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
+                if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+                    startActivity(new Intent(this,LoginActivity.class));
+                    return;
+                }
                 startActivity(new Intent(this, FosterteacherActivity.class));
                 break;
             case R.id.mNoLoginContainer:
-                startActivityForResult(new Intent(this, LoginActivity.class), REQUESTCODE);
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
     }

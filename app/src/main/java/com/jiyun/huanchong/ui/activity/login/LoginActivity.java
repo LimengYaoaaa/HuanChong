@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.presenter.LoginPresenterImpl;
 import com.jiyun.huanchong.ui.activity.bean.LoginBean;
+import com.jiyun.huanchong.ui.activity.home.HomeActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.jiyun.huanchong.ui.view.LoginView;
 import com.jiyun.huanchong.utils.SharedUtils;
@@ -102,6 +103,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             String uid = map.get("uid");
                             String gender = map.get("gender");
                             SharedUtils.saveDisanfangInfo(LoginActivity.this, uid, iconurl, name, gender);
+                            Intent intent = new Intent(LoginActivity.this, BindPhoneActivity.class);
+                            startActivity(intent);
                         }
 
                         @Override
@@ -126,6 +129,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         public void onSuccess (LoginBean loginBean){
             Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
             SharedUtils.saveUserInfo(this, loginBean.getResult().getUserPhone(), loginBean.getResult().getUserName(), loginBean.getResult().getUserId(), loginBean.getResult().getUserSex());
+            startActivity(new Intent(this, HomeActivity.class));
         }
 
         @Override
