@@ -13,45 +13,42 @@ import static com.jiyun.huanchong.app.App.context;
  */
 
 public class SharedUtils {
-    private SharedUtils(){
-        throw new UnknownFormatConversionException("you can't instance me");
+    private static SharedUtils sharedUtils;
+    private SharedPreferences userInfo;
+    private SharedPreferences.Editor edit;
+
+    private SharedUtils(Context context){
+        userInfo = context.getSharedPreferences("userInfo", MODE_PRIVATE);
+        edit = userInfo.edit();
     }
-    public static void saveUserInfo(Context context, long userPhone, String username, String userid, int usersex){
-        if (username==null||username.equals(""))
-            return;
-        if (userid==null||userid.equals(""))
-            return;
-        SharedPreferences userInfo = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = userInfo.edit();
-        edit.putString("phone",userPhone+"");
-        if (usersex==1){
-            edit.putString("sex","男");
-        }else{
-            edit.putString("sex","女");
+    public static SharedUtils getInstance(Context context){
+        if (sharedUtils==null){
+            sharedUtils=new SharedUtils(context);
         }
-        edit.putString("username",username);
+        return sharedUtils;
+    }
+    public void addHeadImage(String iconurl){
+        edit.putString("iconurl",iconurl);
+        edit.commit();
+    }
+    public void addUserid(String userid){
         edit.putString("userid",userid);
         edit.commit();
     }
-    public static void saveDisanfangInfo(Context context,String uid,String iconurl,String name,String gender){
-        if (uid==null||uid.equals("")){
-            return;
-        }
-        if (iconurl==null||iconurl.equals("")){
-            return;
-        }
-        if (name==null||name.equals("")){
-            return;
-        }
-        if (gender==null||gender.equals("")){
-            return;
-        }
-        SharedPreferences disanfangInfo = context.getSharedPreferences("disanfangInfo", MODE_PRIVATE);
-        SharedPreferences.Editor edit = disanfangInfo.edit();
-        edit.putString("uid",uid);
-        edit.putString("iconurl",iconurl);
-        edit.putString("name",name);
-        edit.putString("gender",gender);
+    public void addUserPhone(String userphone){
+        edit.putString("userphone",userphone);
+        edit.commit();
+    }
+    public void addUserSex(String usersex){
+        edit.putString("usersex",usersex);
+        edit.commit();
+    }
+    public void addUserName(String username){
+        edit.putString("username",username);
+        edit.commit();
+    }
+    public void clear(){
+        edit.clear();
         edit.commit();
     }
 }

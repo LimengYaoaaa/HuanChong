@@ -44,9 +44,9 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void init() {
-        SharedPreferences disanfangInfo = getSharedPreferences("disanfangInfo", MODE_PRIVATE);
-        String iconurl = disanfangInfo.getString("iconurl", "");
-        String name = disanfangInfo.getString("name", "");
+        SharedPreferences disanfangInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String iconurl = disanfangInfo.getString("iconurl",null);
+        String name = disanfangInfo.getString("username", null );
         Glide.with(this).load(iconurl).into(mBindPhoneHeadImg);
         mBindPhoneName.setText(name);
         mBindPhoneBack.setOnClickListener(this);

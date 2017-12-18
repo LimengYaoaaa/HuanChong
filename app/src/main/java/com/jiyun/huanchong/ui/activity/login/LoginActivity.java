@@ -22,6 +22,7 @@ import com.jiyun.huanchong.utils.SharedUtils;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.sina.params.ShareRequestParam;
 
 import java.util.Map;
 
@@ -98,11 +99,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                         @Override
                         public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                            SharedUtils.getInstance(LoginActivity.this).clear();
                             String iconurl = map.get("iconurl");
                             String name = map.get("name");
                             String uid = map.get("uid");
                             String gender = map.get("gender");
-                            SharedUtils.saveDisanfangInfo(LoginActivity.this, uid, iconurl, name, gender);
+                            SharedUtils.getInstance(LoginActivity.this).addHeadImage(iconurl);
+                            SharedUtils.getInstance(LoginActivity.this).addUserName(name);
+                            SharedUtils.getInstance(LoginActivity.this).addUserSex(gender);
+                            SharedUtils.getInstance(LoginActivity.this).addUserid(uid);
                             Intent intent = new Intent(LoginActivity.this, BindPhoneActivity.class);
                             startActivity(intent);
                         }
@@ -131,7 +136,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             boolean ret = loginBean.isRet();
             if (ret){
                 Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
-                SharedUtils.saveUserInfo(this, loginBean.getResult().getUserPhone(), loginBean.getResult().getUserName(), loginBean.getResult().getUserId(), loginBean.getResult().getUserSex());
+                SharedUtils.getInstance(this).clear();
+                SharedUtils.getInstance(this).addUserid(loginBean.getResult().getUserId());
+                SharedUtils.getInstance(this).addUserPhone(loginBean.getResult().getUserPhone()+"");
+                SharedUtils.getInstance(this).addUserSex(loginBean.getResult().getUserSex()+"");
+                SharedUtils.getInstance(this).addUserName(loginBean.getResult().getUserName());
                 startActivity(new Intent(this, HomeActivity.class));
             }else{
                 Toast.makeText(this, "登陆失败", Toast.LENGTH_SHORT).show();
@@ -148,7 +157,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         protected void onActivityResult ( int requestCode, int resultCode, Intent data){
             super.onActivityResult(requestCode, resultCode, data);
             UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-
-
         }
     }

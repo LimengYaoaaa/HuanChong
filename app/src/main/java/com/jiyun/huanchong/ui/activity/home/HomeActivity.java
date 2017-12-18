@@ -87,12 +87,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mInfomation.setVisibility(View.GONE);
         mBtnSwitchUser.setVisibility(View.GONE);
         SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
-        SharedPreferences disanfangInfo = getSharedPreferences("disanfangInfo", MODE_PRIVATE);
         username = userInfo.getString("username", null);
-        String phone = userInfo.getString("phone", null);
-        iconurl = disanfangInfo.getString("iconurl", null);
-        name = disanfangInfo.getString("name", null);
+        String phone = userInfo.getString("userphone", null);
+        iconurl = userInfo.getString("iconurl", null);
         if (username !=null&&!username.equals("")&&phone!=null){
+            if (iconurl!=null){
+                Glide.with(this).load(iconurl).into(mMenuHead);
+            }
             mMenuName.setText(username);
             mNoLoginContainer.setVisibility(View.GONE);
             mMenuPhone.setText(phone);
@@ -101,7 +102,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             isLogin=true;
         }
         if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
-            Glide.with(this).load(iconurl).into(mMenuHead);
+            Glide.with(this).load(this.iconurl).into(mMenuHead);
             mMenuName.setText(name);
             mNoLoginContainer.setVisibility(View.GONE);
             mInfomation.setVisibility(View.VISIBLE);
