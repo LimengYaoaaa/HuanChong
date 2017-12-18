@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fa7829"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/xiao"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:text="小型犬"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fa7829"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/zhong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:text="中型犬"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fa7829"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/da"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:text="大型犬"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fa7829"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/mao"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:text="猫"/>
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fa7829"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/xiaochong"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:text="小宠"/>
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fa7829"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/youquan"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:text="幼犬"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fa7829"
+            android:layout_alignParentTop="true"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        >
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="600dp"
+             android:background="#FF808080"
+             />
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

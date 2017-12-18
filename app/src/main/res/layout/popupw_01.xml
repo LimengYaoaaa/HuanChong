@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:paddingBottom="2dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2.25dp"
+                android:background="#fa7829"
+                android:layout_alignParentTop="true"/>
+
+            <TextView
+                android:id="@+id/pop_computer"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="附近优选"/>
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c3bfbf"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/pop_financial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:text="好评优选"/>
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c3bfbf"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/pop_manage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:text="订单优选"/>
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fa7829"
+                android:layout_alignParentTop="true"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/pop_computer01"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:text="价格从高到底"/>
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fa7829"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/pop_computer02"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:text="价格从低到高"/>
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fa7829"
+                android:layout_alignParentTop="true"/>
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>

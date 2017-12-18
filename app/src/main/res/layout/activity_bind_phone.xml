@@ -104,4 +104,5 @@
         android:textSize="18sp"
         android:textColor="#313131"
         android:layout_marginRight="15dp"/>
+
 </LinearLayout>
