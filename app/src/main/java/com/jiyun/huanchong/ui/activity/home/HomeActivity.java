@@ -15,19 +15,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.ui.activity.fosterteacher.FosterteacherActivity;
-import com.jiyun.huanchong.ui.activity.news.NewsActivity;
-import com.jiyun.huanchong.ui.activity.personalInfomation.PersonalInfomationActivity;
 import com.jiyun.huanchong.ui.activity.konw.KonwActivity;
 import com.jiyun.huanchong.ui.activity.login.LoginActivity;
+import com.jiyun.huanchong.ui.activity.news.NewsActivity;
 import com.jiyun.huanchong.ui.activity.order.OrderActivity;
+import com.jiyun.huanchong.ui.activity.personalInfomation.PersonalInfomationActivity;
 import com.jiyun.huanchong.ui.activity.pet.PetActivity;
 import com.jiyun.huanchong.ui.activity.setting.SettingActivity;
 import com.jiyun.huanchong.ui.activity.wallet.WalletActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.zaaach.citypicker.CityPickerActivity;
-
-import static com.jiyun.huanchong.constants.Constants.REQUESTCODE;
-import static com.umeng.qq.handler.a.m;
 
 /**
  * Created by mengYao on 2017/12/17.
