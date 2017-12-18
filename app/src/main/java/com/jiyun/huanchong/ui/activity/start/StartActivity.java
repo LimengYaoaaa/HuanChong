@@ -1,18 +1,19 @@
 package com.jiyun.huanchong.ui.activity.start;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.os.Handler;
+import android.widget.ImageView;
 
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.ui.activity.home.HomeActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 
-public class StartActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView toHomePage;
+public class StartActivity extends BaseActivity {
+
+
+    private Handler handler = new Handler();
+    private ImageView iv_Start;
 
     @Override
     protected int getLayoutId() {
@@ -21,26 +22,27 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void findViewById() {
-        toHomePage = (TextView) findViewById(R.id.toHomePage);
+        iv_Start = (ImageView) findViewById(R.id.iv_start);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(StartActivity.this,HomeActivity.class));
+
+                finish();
+            }
+        },3000);
     }
 
     @Override
     protected void init() {
-        toHomePage.setOnClickListener(this);
+
     }
+
 
     @Override
     protected void loadData() {
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.toHomePage:
-                startActivity(new Intent(this, HomeActivity.class));
-                finish();
-                break;
-        }
-    }
+
 }

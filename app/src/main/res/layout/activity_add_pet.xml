@@ -60,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:padding="5dp"
+       android:id="@+id/paizhao"
         >
 
         <TextView
@@ -75,8 +76,8 @@
 
         <ImageView
             android:id="@+id/Headportrait"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_centerInParent="true"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
@@ -311,6 +312,7 @@
 
     <EditText
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="300dp"
         android:background="@drawable/pe_shape_border_gray"
         android:padding="10dp"

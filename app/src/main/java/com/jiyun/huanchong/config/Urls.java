@@ -6,4 +6,8 @@ package com.jiyun.huanchong.config;
 
 public class Urls {
     public static final String BASEURL="http://123.56.150.230:8885/dog_family/";
+
+     public static final String HOMEURL = BASEURL+"users/getUsersInfoByVO.jhtml";
+
+     public static final String HOMEURL_01 = BASEURL+"petType/getPetTypesByVO.jhtml";
 }

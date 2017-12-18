@@ -57,4 +57,5 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     testCompile 'junit:junit:4.12'
     compile 'com.zaaach:citypicker:1.1'
+    implementation 'com.google.code.gson:gson:2.2.4'
 }

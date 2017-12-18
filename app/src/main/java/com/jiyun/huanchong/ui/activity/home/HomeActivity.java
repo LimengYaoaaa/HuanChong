@@ -6,15 +6,24 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jiyun.huanchong.R;
+import com.jiyun.huanchong.bean.ZhuYeBean_01;
+import com.jiyun.huanchong.bean.Zhuyebean;
 import com.jiyun.huanchong.ui.activity.fosterteacher.FosterteacherActivity;
+import com.jiyun.huanchong.ui.activity.home.adapter.MyAdapter;
+import com.jiyun.huanchong.ui.activity.home.adapter.MyAdapter_01;
+import com.jiyun.huanchong.ui.activity.home.pserenter.Pserenter;
+import com.jiyun.huanchong.ui.activity.home.view.IView;
 import com.jiyun.huanchong.ui.activity.konw.KonwActivity;
 import com.jiyun.huanchong.ui.activity.login.LoginActivity;
 import com.jiyun.huanchong.ui.activity.news.NewsActivity;
@@ -26,11 +35,14 @@ import com.jiyun.huanchong.ui.activity.wallet.WalletActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.zaaach.citypicker.CityPickerActivity;
 
+import java.util.ArrayList;
+
+
 /**
  * Created by mengYao on 2017/12/17.
  */
 
-public class HomeActivity extends BaseActivity implements View.OnClickListener {
+public class HomeActivity extends BaseActivity implements  View.OnClickListener,IView {
     private DrawerLayout drawer_layout;
     private ImageView mMenuHead;
     private ImageView mPersonalCenter;
@@ -52,11 +64,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private Boolean state = false;
     private static final int REQUEST_CODE_PICK_CITY = 0;
     private TextView tv2;
+
     private String username;
     private String iconurl;
     private String name;
     private String phone;
     private boolean isLogin;
+
+    private ListView zhuyelist;
+    private Pserenter pserenter;
+    private  ArrayList<Zhuyebean.DescBean> list = new ArrayList<>();
+    private  ArrayList<ZhuYeBean_01.DescBean> list_01 = new ArrayList<>();
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_home;
@@ -64,10 +83,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void findViewById() {
+        pserenter = new Pserenter(this);
         drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mPersonalCenter = (ImageView) findViewById(R.id.mPersonalCenter);
         mInfomation = (RelativeLayout) findViewById(R.id.mInfomation);
         mMenuHead = (ImageView) findViewById(R.id.mMenuHead);
+        zhuyelist = (ListView)findViewById(R.id.zhuyelist);
         mMenuName = (TextView) findViewById(R.id.mMenuName);
         mMenuPhone = (TextView) findViewById(R.id.mMenuPhone);
         mMessageContainer = (RelativeLayout) findViewById(R.id.mMessageContainer);
@@ -118,6 +139,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
 
         fujinyouxuan.setOnClickListener(new View.OnClickListener() {
+
+            private ListView listview;
+
             @Override
             public void onClick(View view) {
 
@@ -127,13 +151,64 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     mPopWindow = new PopupWindow(contentView, DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.WRAP_CONTENT);
                     mPopWindow.setContentView(contentView);
                     //设置各个控件的点击响应
-                    TextView tv1 = (TextView) contentView.findViewById(R.id.pop_computer);
-                    TextView tv2 = (TextView) contentView.findViewById(R.id.pop_financial);
-                    TextView tv3 = (TextView) contentView.findViewById(R.id.pop_manage);
-                    //价格从高到低
-                    TextView tv4 = (TextView) contentView.findViewById(R.id.pop_computer01);
-                    //价格从低到高
-                    TextView tv5 = (TextView) contentView.findViewById(R.id.pop_computer02);
+                    listview = (ListView) contentView.findViewById(R.id.listview);
+
+                    final ArrayList<Person> strings = new ArrayList<>();
+                    strings.add(new Person("附近优选"));
+                    strings.add(new Person("好评优选"));
+                    strings.add(new Person("订单优选"));
+                    strings.add(new Person("价格从高到低"));
+                    strings.add(new Person("价格从低到高"));
+
+                    final ListAdapter listAdapter = new ListAdapter(strings, HomeActivity.this);
+                    listview.setAdapter(listAdapter);
+
+                   listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                       int currentNum = -1;
+                       @Override
+                       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                           String title = strings.get(i).getTitle();
+                           if(title.equals("附近优先")){
+                               pserenter.get("0","40.116384","116.250374","10","distance asc");
+                           }else if (title.equals("好评优先")){
+                               pserenter.get("0","40.116384","116.250374","10","score desc");
+                           }else if(title.equals("订单优先")){
+                               pserenter.get("0","40.116384","116.250374","10","orderCount desc");
+                           }else if (title.equals("价格从高到低")){
+                               pserenter.get("0","40.116384","116.250374","10","price asc");
+                           }else if(title.equals("价格从低到高")){
+                               pserenter.get("0","40.116384","116.250374","10","price desc");
+                           }
+
+
+
+                           for(Person person : strings){ //遍历list集合中的数据
+                               person.setChecked(false);//全部设为未选中
+                           }
+
+                           if(currentNum == -1){ //选中
+                               strings.get(i).setChecked(true);
+                               currentNum = i;
+                           }else if(currentNum == i){ //同一个item选中变未选中
+                               for(Person person : strings){
+                                   person.setChecked(false);
+                               }
+                               currentNum = -1;
+                           }else if(currentNum != i){ //不是同一个item选中当前的，去除上一个选中的
+                               for(Person person : strings){
+                                   person.setChecked(false);
+                               }
+                               strings.get(i).setChecked(true);
+                               currentNum = i;
+                           }
+                           Toast.makeText(HomeActivity.this,strings.get(i).getTitle(),Toast.LENGTH_SHORT).show();
+                           listAdapter.notifyDataSetChanged();//刷新adapter
+
+
+                      }
+
+                   });
 
 
                     mPopWindow.setBackgroundDrawable(new ColorDrawable(0x000000));
@@ -154,6 +229,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         });
 
         chongwuleixing.setOnClickListener(new View.OnClickListener() {
+
+            private ListView listview_01;
+
             @Override
             public void onClick(View view) {
 
@@ -164,12 +242,58 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     mPopWindow = new PopupWindow(contentView, DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.WRAP_CONTENT);
                     mPopWindow.setContentView(contentView);
                     //设置各个控件的点击响应
-                    TextView tv1 = (TextView) contentView.findViewById(R.id.xiao);
-                    TextView tv2 = (TextView) contentView.findViewById(R.id.zhong);
-                    TextView tv3 = (TextView) contentView.findViewById(R.id.da);
-                    TextView tv4 = (TextView) contentView.findViewById(R.id.mao);
-                    TextView tv5 = (TextView) contentView.findViewById(R.id.xiaochong);
-                    TextView tv6 = (TextView) contentView.findViewById(R.id.youquan);
+                    listview_01 = (ListView)contentView.findViewById(R.id.listview_01);
+
+
+                    final ArrayList<Person> strings = new ArrayList<>();
+                    strings.add(new Person("小型犬"));
+                    strings.add(new Person("大型犬"));
+                    strings.add(new Person("中型犬"));
+                    strings.add(new Person("猫"));
+                    strings.add(new Person("小宠"));
+                    strings.add(new Person("幼犬"));
+
+                    final ListAdapter listAdapter = new ListAdapter(strings, HomeActivity.this);
+                    listview_01.setAdapter(listAdapter);
+
+                    listview_01.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        int currentNum = -1;
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            pserenter.getlist("0","10","");
+
+
+
+
+                            for(Person person : strings){ //遍历list集合中的数据
+                                person.setChecked(false);//全部设为未选中
+                            }
+
+                            if(currentNum == -1){ //选中
+                                strings.get(i).setChecked(true);
+                                currentNum = i;
+                            }else if(currentNum == i){ //同一个item选中变未选中
+                                for(Person person : strings){
+                                    person.setChecked(false);
+                                }
+                                currentNum = -1;
+                            }else if(currentNum != i){ //不是同一个item选中当前的，去除上一个选中的
+                                for(Person person : strings){
+                                    person.setChecked(false);
+                                }
+                                strings.get(i).setChecked(true);
+                                currentNum = i;
+                            }
+                            Toast.makeText(HomeActivity.this,strings.get(i).getTitle(),Toast.LENGTH_SHORT).show();
+                            listAdapter.notifyDataSetChanged();//刷新adapter
+
+
+                        }
+
+                    });
+
+
 
                     mPopWindow.setBackgroundDrawable(new ColorDrawable(0x000000));
                     mPopWindow.setOutsideTouchable(true);
@@ -243,6 +367,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void init() {
 
+     pserenter.get("0","116.249706","40.116585","10","distance asc");
+
 
     }
 
@@ -314,4 +440,27 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+
+    @Override
+    public void getlist(ArrayList<Zhuyebean.DescBean> zhuyebean) {
+        list.clear();
+        list.addAll(zhuyebean);
+        MyAdapter myAdapter = new MyAdapter(list, this);
+        zhuyelist.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void get(ZhuYeBean_01 zhuyebean_01) {
+
+        list.clear();
+        ArrayList<ZhuYeBean_01.DescBean> desc = (ArrayList<ZhuYeBean_01.DescBean>) zhuyebean_01.getDesc();
+        list_01.addAll(desc);
+        MyAdapter_01 myAdapter = new MyAdapter_01(list_01, this);
+        zhuyelist.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
+    }
+
+
 }

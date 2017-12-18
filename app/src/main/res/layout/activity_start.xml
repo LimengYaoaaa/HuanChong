@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.jiyun.huanchong.ui.activity.start.StartActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="大吉大利"
-        android:textColor="#ff0000"
-        android:layout_centerInParent="true"
-        android:id="@+id/toHomePage"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/pager02"
+        android:id="@+id/iv_start"
+        android:scaleType="fitXY"
+        />
+
 
 </RelativeLayout>
