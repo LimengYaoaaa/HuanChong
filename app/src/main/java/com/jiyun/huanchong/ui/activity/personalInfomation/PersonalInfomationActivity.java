@@ -1,6 +1,7 @@
 package com.jiyun.huanchong.ui.activity.personalInfomation;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,12 @@ import com.bumptech.glide.Glide;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.jiyun.huanchong.utils.CircleBitmapTransformation;
+import com.jiyun.huanchong.utils.SharedUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import static com.jiyun.huanchong.constants.Constants.REQUESTCODE;
 
@@ -72,7 +79,7 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
     private TextView mQqInfo;
     private TextView mAddressInfo;
     private TextView mTishi;
-
+    private final int RESULTCODE=201;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_personal_infomation;
@@ -125,7 +132,16 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void loadData() {
-
+        SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String username = userInfo.getString("username", null);
+        String address = userInfo.getString("address", null);
+        String iconurl = userInfo.getString("iconurl", null);
+        if (username!=null)
+            mNameInfo.setText(username);
+        if (address!=null)
+            mAddressInfo.setText(address);
+        if (iconurl!=null)
+            Glide.with(this).load(iconurl).transform(new CircleBitmapTransformation(this)).into(mHead);
     }
 
 
@@ -134,10 +150,18 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.personal_return:
+                SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+                String iconurl = userInfo.getString("iconurl", null);
+                String username = userInfo.getString("username", null);
+                String userphone = userInfo.getString("userphone", null);
+                Intent intent1 = new Intent();
+                intent1.putExtra("head",iconurl);
+                intent1.putExtra("name",username);
+                intent1.putExtra("phone",userphone);
+                setResult(RESULTCODE,intent1);
                 finish();
                 break;
             case R.id.head_portrait:
-
                 pop = new PopupWindow(inflate,
                         WindowManager.LayoutParams.MATCH_PARENT,
                         WindowManager.LayoutParams.WRAP_CONTENT);
@@ -155,7 +179,7 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
 
                 break;
             case R.id.mPersonalUserName:
-                startActivityForResult(new Intent(this,UpdateUserNameActivity.class),REQUESTCODE);
+                startActivityForResult(new Intent(this,UpdateUserNameActivity.class),TOUPDATENAME);
                 break;
             case R.id.mPersonalSex:
 
@@ -173,6 +197,7 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
 
                 break;
             case R.id.mContractAddress:
+                startActivityForResult(new Intent(this,UpdateAddressActivity.class),TOUPDATEADDRESS);
                 break;
             case R.id.mToPhotograph:
                 openTakePhoto();
@@ -212,6 +237,7 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
             }
             if (data.getData() != null || data.getExtras() != null) { //防止没有返回结果
                 originalUri = data.getData();
+//                SharedUtils.getInstance(this).addHeadImage(originalUri.getPath());
                 if (originalUri != null) {
                     //拿到图片
                     bitmap = BitmapFactory.decodeFile(originalUri.getPath());
@@ -221,8 +247,12 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
                     Bundle bundle = data.getExtras();
                     if (bundle != null) {
                         bitmap = (Bitmap) bundle.get("data");
-                        Bitmap bitmap1 = new CircleBitmapTransformation(this).getBitmap(this.bitmap);
-                        mHead.setImageBitmap(bitmap1);
+                        Uri head = saveBitmap(bitmap, "head");
+                        String path = head.getPath();
+                        SharedUtils.getInstance(this).addHeadImage(path);
+//                        Bitmap bitmap1 = new CircleBitmapTransformation(this).getBitmap(this.bitmap);
+//                        mHead.setImageBitmap(bitmap1);
+                        Glide.with(this).load(path).transform(new CircleBitmapTransformation(this)).into(mHead);
                     } else {
                         Toast.makeText(getApplicationContext(), "找不到图片", Toast.LENGTH_SHORT).show();
                     }
@@ -238,9 +268,24 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
             Uri uri = data.getData();
             Cursor cursor = getContentResolver().query(uri, null, null, null,null);
             if (cursor != null && cursor.moveToFirst()) {
-                String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                SharedUtils.getInstance(this).addHeadImage(path);
                 Glide.with(this).load(path).transform(new CircleBitmapTransformation(this)).into(mHead);
             }
+        }
+        if (requestCode==TOUPDATEADDRESS&&data!=null){
+            String city = data.getStringExtra("city");
+            String address = data.getStringExtra("address");
+            if (city==null||address==null)
+                return;
+            mAddressInfo.setText(address);
+        }
+        if (requestCode==TOUPDATENAME){
+            if (data==null){
+                return;
+            }
+            String name = data.getStringExtra("name");
+            mNameInfo.setText(name);
         }
     }
     private void openTakePhoto() {
@@ -254,5 +299,34 @@ public class PersonalInfomationActivity extends BaseActivity implements View.OnC
         } else {
             Toast.makeText(this, "sdcard不可用", Toast.LENGTH_SHORT).show();
         }
+    }
+    private Uri saveBitmap(Bitmap bm, String dirPath) {
+        //新建文件夹用于存放裁剪后的图片
+        File tmpDir = new File(Environment.getExternalStorageDirectory() + "/" + dirPath);
+        if (!tmpDir.exists()) {
+            tmpDir.mkdir();
+        }
+
+        //新建文件存储裁剪后的图片
+        File img = new File(tmpDir.getAbsolutePath() + "/avator.png");
+        try {
+            //打开文件输出流
+            FileOutputStream fos = new FileOutputStream(img);
+            //将bitmap压缩后写入输出流(参数依次为图片格式、图片质量和输出流)
+            bm.compress(Bitmap.CompressFormat.PNG, 85, fos);
+            //刷新输出流
+            fos.flush();
+            //关闭输出流
+            fos.close();
+            //返回File类型的Uri
+            return Uri.fromFile(img);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

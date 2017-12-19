@@ -33,9 +33,12 @@ import com.jiyun.huanchong.ui.activity.pet.PetActivity;
 import com.jiyun.huanchong.ui.activity.setting.SettingActivity;
 import com.jiyun.huanchong.ui.activity.wallet.WalletActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
+import com.jiyun.huanchong.utils.CircleBitmapTransformation;
 import com.zaaach.citypicker.CityPickerActivity;
 
 import java.util.ArrayList;
+
+import static com.jiyun.huanchong.constants.Constants.REQUESTCODE;
 
 
 /**
@@ -75,6 +78,7 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
     private Pserenter pserenter;
     private  ArrayList<Zhuyebean.DescBean> list = new ArrayList<>();
     private  ArrayList<ZhuYeBean_01.DescBean> list_01 = new ArrayList<>();
+    private final int UPDATEREQUESTCODE=101;
 
     @Override
     protected int getLayoutId() {
@@ -110,7 +114,7 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
         iconurl = userInfo.getString("iconurl", null);
         if (username !=null&&!username.equals("")&&phone!=null){
             if (iconurl!=null){
-                Glide.with(this).load(iconurl).into(mMenuHead);
+                Glide.with(this).load(iconurl).transform(new CircleBitmapTransformation(this)).into(mMenuHead);
             }
             mMenuName.setText(username);
             mNoLoginContainer.setVisibility(View.GONE);
@@ -363,6 +367,16 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
                 tv2.setText("当前选择：" + city);
             }
         }
+        if (requestCode==UPDATEREQUESTCODE){
+            if (data!=null){
+                String head = data.getStringExtra("head");
+                String name = data.getStringExtra("name");
+                String phone = data.getStringExtra("phone");
+                Glide.with(this).load(head).transform(new CircleBitmapTransformation(this)).into(mMenuHead);
+                mMenuName.setText(name);
+                mMenuPhone.setText(phone);
+            }
+        }
     }
 
     @Override
@@ -388,7 +402,7 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
 //        name = disanfangInfo.getString("name", null);
         switch (v.getId()) {
             case R.id.mInfomation:
-                startActivity(new Intent(this, PersonalInfomationActivity.class));
+                startActivityForResult(new Intent(this, PersonalInfomationActivity.class),UPDATEREQUESTCODE);
                 break;
             case R.id.mMessageContainer:
                 if (isLogin){

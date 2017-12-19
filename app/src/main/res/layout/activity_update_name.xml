@@ -43,7 +43,7 @@
         android:background="#fff">
         <EditText
             android:hint="请输入16字以内的名称(中文，数字，字母)"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="#505050"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"

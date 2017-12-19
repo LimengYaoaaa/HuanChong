@@ -40,6 +40,7 @@
         android:layout_height="0.1dp"
         android:background="@color/lineColor"></View>
     <RelativeLayout
+        android:id="@+id/mSelectCityContainer"
         android:background="#fff"
         android:layout_width="match_parent"
         android:layout_height="50dp">

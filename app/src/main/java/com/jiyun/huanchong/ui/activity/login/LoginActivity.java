@@ -106,8 +106,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             String gender = map.get("gender");
                             SharedUtils.getInstance(LoginActivity.this).addHeadImage(iconurl);
                             SharedUtils.getInstance(LoginActivity.this).addUserName(name);
-                            SharedUtils.getInstance(LoginActivity.this).addUserSex(gender);
                             SharedUtils.getInstance(LoginActivity.this).addUserid(uid);
+                            SharedUtils.getInstance(LoginActivity.this).addUserSex(gender);
                             Intent intent = new Intent(LoginActivity.this, BindPhoneActivity.class);
                             startActivity(intent);
                         }
