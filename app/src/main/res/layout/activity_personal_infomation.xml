@@ -50,8 +50,8 @@
             />
         <ImageView
             android:id="@+id/mHead"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/user_defaults"
             android:layout_toLeftOf="@+id/enter"
             android:layout_marginRight="10dp"
@@ -75,7 +75,17 @@
             android:textSize="15sp"
             android:layout_centerVertical="true"
             />
+        <TextView
+            android:id="@+id/mNameInfo"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/nameEnter"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
         <ImageView
+            android:id="@+id/nameEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/enter"
@@ -106,8 +116,16 @@
             android:layout_centerVertical="true"
             android:text="性别"
             android:textSize="15sp" />
-
+        <TextView
+            android:id="@+id/mSexInfo"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/sexEnter"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
+            android:id="@+id/sexEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -133,7 +151,16 @@
             android:textSize="15sp"
             android:layout_centerVertical="true"
             />
+        <TextView
+            android:id="@+id/mDateInfo"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/dateEnter"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
+            android:id="@+id/dateEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/enter"
@@ -156,7 +183,16 @@
             android:textSize="15sp"
             android:layout_centerVertical="true"
             />
+        <TextView
+            android:id="@+id/mPhoneInfo"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/phoneEnter"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
+            android:id="@+id/phoneEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/enter"
@@ -183,7 +219,16 @@
             android:textSize="15sp"
             android:layout_centerVertical="true"
             />
+        <TextView
+            android:id="@+id/mWxInfo"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/wxEnter"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
+            android:id="@+id/wxEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/enter"
@@ -210,6 +255,14 @@
             android:textSize="15sp"
             android:layout_centerVertical="true"
             />
+        <TextView
+            android:id="@+id/mQqInfo"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/qq_enter"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -219,6 +272,7 @@
             android:id="@+id/qq_enter"
             />
         <TextView
+            android:id="@+id/mTishi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未完善信息"
@@ -245,7 +299,16 @@
             android:textSize="15sp"
             android:layout_centerVertical="true"
             />
+        <TextView
+            android:id="@+id/mAddressInfo"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/addressEnter"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
+            android:id="@+id/addressEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/enter"

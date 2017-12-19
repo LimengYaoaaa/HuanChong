@@ -9,10 +9,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
-import com.bumptech.glide.request.RequestOptions;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.bean.ZhuYeBean_01;
-import com.jiyun.huanchong.utils.Formation;
+import com.jiyun.huanchong.utils.CircleBitmapTransformation;
 
 import java.util.ArrayList;
 
@@ -67,18 +66,7 @@ public class MyAdapter_01  extends BaseAdapter {
         }else{
             holder = (ViewHolder) view.getTag();
         }
-        Glide.with(context)
-                .load(list.get(i).getPetTypeImage())
-                .apply(new RequestOptions()
-                        .centerCrop()
-                        .priority(Priority.HIGH)
-                        .error(R.mipmap.pet_icon)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .transform(new Formation()))
-                .into(holder.imageView);
-
-
-
+        Glide.with(context).load(list.get(i).getPetTypeImage()).transform(new CircleBitmapTransformation(context)).into(holder.imageView);
         holder.textView.setText(list.get(i).getTypeName());
         holder.textView01.setText(list.get(i).getTypeName());
         holder.textView02.setText(list.get(i).getPetPrice()+"元起");

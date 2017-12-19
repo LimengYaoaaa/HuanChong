@@ -1,9 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jiyun.huanpet.ui.activity.home.activity.UpdateAddressActivity">
-
-</android.support.constraint.ConstraintLayout>
+    android:orientation="vertical"
+    android:background="#f0f1f5">
+    <RelativeLayout
+        android:background="#f9f9f9"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back_gray"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/mBack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系地址"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textColor="#505050"/>
+        <TextView
+            android:id="@+id/mCommit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            android:textSize="15sp"
+            android:textColor="#505050"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/lineColor"></View>
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="城市"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:textColor="#505050"
+            android:layout_centerVertical="true"
+            android:id="@+id/textcity"/>
+        <TextView
+            android:id="@+id/mCity"
+            android:layout_toRightOf="@id/textcity"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp"
+            android:textColor="#505050"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical" />
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:id="@+id/selectCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/enter"
+            android:layout_gravity="center_vertical|right"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/lineColor"></View>
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="具体地址"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:textColor="#505050"
+            android:layout_centerVertical="true"
+            android:id="@+id/specificAddress"/>
+        <EditText
+            android:background="@drawable/edit_shape_none_line"
+            android:id="@+id/mspecificAddress"
+            android:layout_toRightOf="@id/specificAddress"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:hint="请输入具体街道-小区-栋-号"
+            android:textSize="18sp"
+            android:textColor="#505050"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical" />
+    </RelativeLayout>
+</LinearLayout>

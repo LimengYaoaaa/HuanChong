@@ -19,8 +19,7 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void findViewById() {
-        dialogue = (Button) findViewById(R.id.dialogue);
-        dialogue.setOnClickListener(this);
+
     }
 
     @Override
@@ -36,9 +35,7 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.dialogue:
-                  startActivity(new Intent(this,ChatInterfaceActivity.class));
-                break;
+
         }
     }
 }

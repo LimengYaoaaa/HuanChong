@@ -4,78 +4,51 @@
     android:layout_height="280sp"
     >
     <LinearLayout
-        android:orientation="vertical"
+        android:background="@drawable/popup_window_shape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
-        android:background="@drawable/identity_photo_pop">
-        <RelativeLayout
-            android:id="@+id/upload"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/mPopupTitle"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="上传身份证照片"
-                />
-        </RelativeLayout>
+            android:layout_height="50dp"
+            android:text="更换用户头像"
+            android:textSize="15sp"
+            android:gravity="center"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#F0F1F5"/>
-        <RelativeLayout
-            android:id="@+id/photograph"
-            android:layout_width="match_parent"
-            android:layout_height="50sp">
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="拍照"
-                android:textColor="#3E97FF"/>
-        </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/album"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        >
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1sp"
-        android:background="#F0F1F5"/>
+            android:layout_height="0.1dp"
+            android:background="@color/lineColor"></View>
         <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:id="@+id/mToPhotograph"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="拍照"
+            android:textColor="#477cf5"
+            android:textSize="20sp"
+            android:gravity="center"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/lineColor"></View>
+        <TextView
+            android:id="@+id/mToAlbum"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
             android:text="相册"
-            android:textColor="#3E97FF"/>
-    </RelativeLayout>
+            android:textColor="#477cf5"
+            android:textSize="20sp"
+            android:gravity="center"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/cancel"
-        android:layout_marginTop="5sp"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
+    <Button
+        android:id="@+id/mDismissPopup"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout"
-        android:background="@drawable/identity_photo_pop"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/popup_window_shape"
         android:text="取消"
-        android:gravity="center"
-        android:textColor="#3E97FF"/>
+        android:textSize="20sp"
+        android:textColor="#477cf5"/>
 </RelativeLayout>

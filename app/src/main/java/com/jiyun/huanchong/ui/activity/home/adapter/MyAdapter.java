@@ -9,10 +9,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
-import com.bumptech.glide.request.RequestOptions;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.bean.Zhuyebean;
-import com.jiyun.huanchong.utils.Formation;
+import com.jiyun.huanchong.utils.CircleBitmapTransformation;
 
 import java.util.ArrayList;
 
@@ -67,15 +66,7 @@ public class MyAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder) view.getTag();
         }
-        Glide.with(this.context)
-                .load(list.get(i).getUserImage())
-                .apply(new RequestOptions()
-                        .centerCrop()
-                        .priority(Priority.HIGH)
-                        .error(R.mipmap.hhh)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .transform(new Formation()))
-                .into(holder.imageView);
+        Glide.with(context).load(list.get(i).getUserImage()).transform(new CircleBitmapTransformation(context)).into(holder.imageView);
         holder.textView.setText(list.get(i).getFamily());
         holder.textView01.setText(list.get(i).getAddress());
         holder.textView02.setText(list.get(i).getScore()+"起");
