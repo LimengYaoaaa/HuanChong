@@ -232,7 +232,7 @@ public class OkHttpUtils implements HttpRequest {
             public void onResponse(Call call, Response response) throws IOException {
 
                 final String string = response.body().string();
-                Log.e("erra",string);
+                Log.e("erra>>>>>>>>>>>",string);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

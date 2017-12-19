@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    >
+
+
+<ImageView
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:id="@+id/iv_demo1"
+    android:layout_alignParentLeft="true"
+    android:gravity="center_vertical"
+    android:src="@mipmap/login_weixin"
+    />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_toRightOf="@+id/iv_demo1"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="adsadasd"
+        android:textSize="30dp"
+        android:id="@+id/tv_demo1"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="adsadasd"
+        android:id="@+id/tv_demo2"
+        android:textSize="20dp"
+        android:layout_toEndOf="@+id/iv_demo1"
+        android:layout_toRightOf="@+id/iv_demo1"
+        />
+
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asddaadwqe"
+            android:textSize="30dp"
+            android:id="@+id/tv_demo3"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asddaadwqe"
+            android:textSize="20dp"
+            android:id="@+id/tv_demo4"
+            />
+
+
+
+    </LinearLayout>
+
+   </RelativeLayout>
