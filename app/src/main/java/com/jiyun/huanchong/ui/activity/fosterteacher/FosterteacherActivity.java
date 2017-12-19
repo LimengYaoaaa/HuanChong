@@ -1,7 +1,6 @@
 package com.jiyun.huanchong.ui.activity.fosterteacher;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -35,6 +34,21 @@ public class FosterteacherActivity extends BaseActivity implements View.OnClickL
     private CheckBox mIsSmallDog;
     private CheckBox mIsCat;
     private CheckBox mIsSmallPet;
+    private ImageView mIdCard;
+    private EditText big_edit;
+    private EditText center_edit;
+    private EditText small_edit;
+    private EditText cat_edit;
+    private EditText smallpet_edit;
+    private CheckBox wish;
+    private EditText swish_edit;
+    private CheckBox get;
+    private EditText get_edit;
+    private EditText mNiCheng;
+    private EditText mShow;
+    private ImageView mYingYe;
+    private ImageView mPlayPhoto;
+    private Button ende;
 
 
     @Override
@@ -44,13 +58,29 @@ public class FosterteacherActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void findViewById() {
-         ll_city = (LinearLayout) findViewById(R.id.ll_city);
-        mCity = (TextView) findViewById(R.id.mCity);
+        mIdCard = (ImageView) findViewById(R.id.mIdCard);
+        big_edit = (EditText) findViewById(R.id.big_edit);
+        center_edit = (EditText) findViewById(R.id.center_edit);
+        small_edit = (EditText) findViewById(R.id.small_edit);
+        cat_edit = (EditText) findViewById(R.id.cat_edit);
+        smallpet_edit = (EditText) findViewById(R.id.smallpet_edit);
+        wish = (CheckBox) findViewById(R.id.wish);
+        swish_edit = (EditText) findViewById(R.id.swish_edit);
+        get = (CheckBox) findViewById(R.id.get);
+        get_edit = (EditText) findViewById(R.id.get_edit);
+        mNiCheng = (EditText) findViewById(R.id.mNiCheng);
+        mShow = (EditText) findViewById(R.id.mShow);
+        mYingYe = (ImageView) findViewById(R.id.mYingYe);
+        mPlayPhoto = (ImageView) findViewById(R.id.mPlayPhoto);
+        ende = (Button) findViewById(R.id.ende);
+        ll_city = (LinearLayout) findViewById(R.id.ll_city);
     }
 
     @Override
     protected void init() {
             ll_city.setOnClickListener(this);
+            ende.setOnClickListener(this);
+
     }
 
     @Override
@@ -62,21 +92,17 @@ public class FosterteacherActivity extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_city:
-
 //启动
                 startActivityForResult(new Intent(FosterteacherActivity.this, CityPickerActivity.class),
                         REQUEST_CODE_PICK_CITY);
-
+                break;
+            case R.id.ende:
 
                 break;
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) and run LayoutCreator again
-    }
+
     //重写onActivityResult方法
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -59,6 +59,7 @@ public final class PermissionUtils {
     }
 
     @TargetApi(Build.VERSION_CODES.M)
+    //请求权限
     public static void requestPermissions(Context context, int requestCode
             , String[] permissions, OnPermissionListener listener, RationaleHandler handler) {
         if (context instanceof Activity) {
