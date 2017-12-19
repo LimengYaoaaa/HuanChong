@@ -1,4 +1,4 @@
-package com.jiyun.huanchong.ui.activity.pet.fragment;
+package com.jiyun.huanchong.ui.activity.order.fragment;
 
 
 import android.os.Bundle;
@@ -8,18 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jiyun.huanchong.R;
-import com.jiyun.huanchong.utils.SideBar;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CatFragment extends Fragment {
+public class InfostercareFragment extends Fragment {
 
 
-    private SideBar sidrbar;
-
-    public CatFragment() {
+    public InfostercareFragment() {
         // Required empty public constructor
     }
 
@@ -28,13 +24,7 @@ public class CatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View inflate = inflater.inflate(R.layout.fragment_cat, container, false);
-        initView(inflate);
-        return inflate;
+        return inflater.inflate(R.layout.fragment_infostercare, container, false);
     }
 
-    private void initView(View inflate) {
-        sidrbar = (SideBar) inflate.findViewById(R.id.sidrbar);
-
-    }
 }

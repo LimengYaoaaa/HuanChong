@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -180,9 +181,9 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
                                pserenter.get("0","40.116384","116.250374","10","score desc");
                            }else if(title.equals("订单优先")){
                                pserenter.get("0","40.116384","116.250374","10","orderCount desc");
-                           }else if (title.equals("价格从高到低")){
+                           }else if (title.equals("价格从低到高")){
                                pserenter.get("0","40.116384","116.250374","10","price asc");
-                           }else if(title.equals("价格从低到高")){
+                           }else if(title.equals("价格从高到低")){
                                pserenter.get("0","40.116384","116.250374","10","price desc");
                            }
 
@@ -389,7 +390,18 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
 
     @Override
     protected void loadData() {
+        mPersonalCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(drawer_layout.isDrawerOpen(Gravity.LEFT)){
+                    drawer_layout.closeDrawer(Gravity.LEFT);
 
+                }else {
+                    drawer_layout.openDrawer(Gravity.LEFT);
+                }
+
+            }
+        });
     }
 
     @Override

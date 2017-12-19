@@ -5,9 +5,10 @@
     tools:context="com.jiyun.huanpet.ui.activity.fragment.SmallpetFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="sfdsfsdfsdfd" />
+    <com.jiyun.huanchong.utils.SideBar
+        android:id="@+id/sidrbar"
+        android:layout_width="30dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="right|center" />
 
 </FrameLayout>

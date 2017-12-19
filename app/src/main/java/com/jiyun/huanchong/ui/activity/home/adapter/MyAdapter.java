@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.bean.Zhuyebean;
-import com.jiyun.huanchong.utils.CircleBitmapTransformation;
+import com.jiyun.huanchong.utils.Formation;
 
 import java.util.ArrayList;
 
@@ -66,10 +67,16 @@ public class MyAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder) view.getTag();
         }
-        Glide.with(context).load(list.get(i).getUserImage()).transform(new CircleBitmapTransformation(context)).into(holder.imageView);
+        Glide.with(this.context)
+                .load(list.get(i).getUserImage())
+                .apply(new RequestOptions()
+                        .centerCrop()
+                        .priority(Priority.HIGH)
+                        .transform(new Formation()))
+                .into(holder.imageView);
         holder.textView.setText(list.get(i).getFamily());
         holder.textView01.setText(list.get(i).getAddress());
-        holder.textView02.setText(list.get(i).getScore()+"起");
+        holder.textView02.setText(list.get(i).getPrice()+"元起");
         holder.textView03.setText("距"+list.get(i).getScore()+"km");
 
         return view;

@@ -6,6 +6,7 @@
  */
 package com.jiyun.huanchong.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -88,7 +89,7 @@ public class ConnectionUtils {
 	 */
 	public static String getIp(Context context) {
 		// 获取WiFi管理�?
-		WifiManager wifiManager = (WifiManager) App.context.getSystemService(App.context.WIFI_SERVICE);
+		@SuppressLint("WifiManagerLeak") WifiManager wifiManager = (WifiManager) App.context.getSystemService(App.context.WIFI_SERVICE);
 		// 判断wifi是否�?�?
 		if (!wifiManager.isWifiEnabled()) {
 			return "127.0.0.3";

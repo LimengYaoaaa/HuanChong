@@ -1,69 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="20dp"
-    >
-
-
-<ImageView
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:id="@+id/iv_demo1"
-    android:layout_alignParentLeft="true"
-    android:gravity="center_vertical"
-    android:src="@mipmap/login_weixin"
-    />
-
-<LinearLayout
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_toRightOf="@+id/iv_demo1"
     >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="adsadasd"
-        android:textSize="30dp"
-        android:id="@+id/tv_demo1"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="adsadasd"
-        android:id="@+id/tv_demo2"
-        android:textSize="20dp"
-        android:layout_toEndOf="@+id/iv_demo1"
-        android:layout_toRightOf="@+id/iv_demo1"
-        />
-
-
-</LinearLayout>
-
+    <ImageView
+        android:id="@+id/iv_demo1"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="80px"
+        android:layout_height="80px" />
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        >
+        android:layout_marginLeft="10px"
+        android:layout_width="0px"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
         <TextView
+            android:text="一号足疗师"
+            android:textSize="15sp"
+            android:id="@+id/tv_demo1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="asddaadwqe"
-            android:textSize="30dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/icon_detail_evaluate_half"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_demo2"
+            android:textSize="10sp"
+            android:textColor="#8f7b6868"
+            android:text="天上人间 二楼包房"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_marginRight="20px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="aa"
             android:id="@+id/tv_demo3"
-            />
-        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="asddaadwqe"
-            android:textSize="20dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="aa"
             android:id="@+id/tv_demo4"
-            />
-
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-   </RelativeLayout>
+   </LinearLayout>
