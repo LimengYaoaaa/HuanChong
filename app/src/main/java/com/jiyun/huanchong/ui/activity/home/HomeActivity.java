@@ -35,6 +35,7 @@ import com.jiyun.huanchong.ui.activity.setting.SettingActivity;
 import com.jiyun.huanchong.ui.activity.wallet.WalletActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.jiyun.huanchong.utils.CircleBitmapTransformation;
+import com.jiyun.huanchong.utils.PermissionUtils;
 import com.zaaach.citypicker.CityPickerActivity;
 
 import java.util.ArrayList;
