@@ -8,11 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.request.RequestOptions;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.bean.ZhuYeBean_01;
-import com.jiyun.huanchong.utils.Formation;
+import com.jiyun.huanchong.utils.CircleBitmapTransformation;
 
 import java.util.ArrayList;
 
@@ -69,11 +67,7 @@ public class MyAdapter_01  extends BaseAdapter {
         }
         Glide.with(context)
                 .load(list.get(i).getPetTypeImage())
-                .apply(new RequestOptions()
-                        .centerCrop()
-                        .priority(Priority.HIGH)
-                        .transform(new Formation()))
-                .into(holder.imageView);
+                .transform(new CircleBitmapTransformation(context)).into(holder.imageView);
 
 
 

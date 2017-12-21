@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.presenter.LoginPresenterImpl;
 import com.jiyun.huanchong.ui.activity.bean.LoginBean;
@@ -22,7 +25,6 @@ import com.jiyun.huanchong.utils.SharedUtils;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.sina.params.ShareRequestParam;
 
 import java.util.Map;
 
@@ -136,6 +138,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             boolean ret = loginBean.isRet();
             if (ret){
                 Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
+                EMClient.getInstance().login(mLoginPhoneEdit.getText().toString().trim(),
+                        mLoginPassWordEdit.getText().toString().trim(), new EMCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            }
+
+                            @Override
+                            public void onError(int i, String s) {
+                                Log.e("huanxin","登陆失败");
+                            }
+
+                            @Override
+                            public void onProgress(int i, String s) {
+
+                            }
+                        });
                 SharedUtils.getInstance(this).clear();
                 SharedUtils.getInstance(this).addUserid(loginBean.getResult().getUserId());
                 SharedUtils.getInstance(this).addUserPhone(loginBean.getResult().getUserPhone()+"");
