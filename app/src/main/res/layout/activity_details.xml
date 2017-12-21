@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.jiyun.huanchong.ui.activity.order.DetailsActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/orderback"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/back_gray"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="marquee"
+            android:gravity="center_horizontal|center"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:text="订单详情"
+            android:textSize="30px"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="115px"
+        android:background="#f5a21c"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:text="已关闭"
+            android:textSize="25px" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:layout_marginStart="23dp"
+            android:text="寄养师长时间未接单"
+            android:textSize="25px" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单编号:"
+        android:layout_marginLeft="5px"
+        android:textSize="25px"
+        android:layout_marginTop="20dp"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bc980667boba468781502a58fd3e57b9"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5px"
+            android:textSize="25px"
+
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20dp"></View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="寄养宠物："
+        android:textSize="25px"
+        android:layout_marginLeft="5px"
+
+        android:layout_marginTop="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <ImageView
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:src="@mipmap/exclamation"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/touxiang"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="多吉♂"
+            android:id="@+id/name"
+            android:textSize="25px"
+            android:layout_toRightOf="@+id/touxiang"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:textSize="25px"
+            android:layout_toEndOf="@+id/touxiang"
+            android:layout_toRightOf="@+id/touxiang"
+            android:text="大型宠物寄养乐园有点像升级版的宠物店，这里的活动空间大，宠物们可以不用住在小小的笼子里，它们有自己的活动空间，而且不会与其他狗狗接触，生活环境很安全。可即便如此，大型宠物寄养乐园可能还是无法一对一照顾到每只狗的所有需求，主人最好考虑清楚以后再选择如何寄养或是否寄养等。" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20dp"></View>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="寄养时间:"
+            android:textSize="25px"
+            android:layout_marginTop="20px"
+            android:layout_marginLeft="5px"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016-03-31至2016-04-28"
+            android:layout_marginTop="20px"
+            android:textSize="25px"
+            android:layout_marginLeft="5px"
+            />
+
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20px"></View>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10px"
+        android:weightSum="4"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="宠物"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="元/晚"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="晚"
+            android:layout_weight="1"
+            /><TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25px"
+        android:text="全额"
+        android:layout_weight="1"
+        />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20px"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_marginLeft="10px"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="多吉"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="10"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="28"
+            android:layout_weight="1"
+            /><TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25px"
+        android:text="280"
+        android:layout_weight="1"
+        />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20px"></View>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="其他服务:"
+            android:textSize="25px"
+            android:layout_marginTop="20px"
+            android:layout_marginLeft="5px"
+            />
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20px"></View>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10px"
+        android:weightSum="4"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="项目"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="单价"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="数量"
+            android:layout_weight="1"
+            /><TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25px"
+        android:text="金额"
+        android:layout_weight="1"
+        />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20px"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10px"
+        android:weightSum="4"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="接送"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="10/公里"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25px"
+            android:text="1次"
+            android:layout_weight="1"
+            /><TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25px"
+        android:text="10"
+        android:layout_weight="1"
+        />
+
+
+    </LinearLayout>
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20px"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <ImageView
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:src="@mipmap/exclamation"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/touxiang_01"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我一直都在"
+            android:id="@+id/name_01"
+            android:layout_marginLeft="10dp"
+            android:textSize="25px"
+            android:layout_toRightOf="@+id/touxiang_01"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/name_01"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/touxiang_01"
+            android:layout_toRightOf="@+id/touxiang_01"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/star"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+            <ImageView
+                android:src="@drawable/icon_detail_evaluate_half"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#d0d0d0"
+        android:layout_marginTop="20px"></View>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15px"
+    android:text="订单时间：  2016-04-19  23:09:09"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25px"
+        android:layout_marginTop="15px"
+        android:text="订单金额： 290￥"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15px"
+        android:text="应付金额： 290￥"
+        android:textSize="25px"
+        /><TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15px"
+    android:textSize="25px"
+    android:text="以同意： 《双方寄养服务协议》"
+    android:textColor="#0bb4f6"
+    />
+
+
+</LinearLayout>

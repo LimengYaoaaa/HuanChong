@@ -67,7 +67,8 @@ public class MyAdapter extends BaseAdapter {
         }
         Glide.with(this.context)
                 .load(list.get(i).getUserImage())
-                .transform(new CircleBitmapTransformation(context)).into(holder.imageView);
+                .transform(new CircleBitmapTransformation(context))
+                .into(holder.imageView);
         holder.textView.setText(list.get(i).getFamily());
         holder.textView01.setText(list.get(i).getAddress());
         holder.textView02.setText(list.get(i).getPrice()+"元起");

@@ -9,7 +9,7 @@ import com.jiyun.huanchong.ui.base.BaseActivity;
 public class ChangpingJianYiActivity extends BaseActivity {
 
 
-    private ImageView Back_return;
+    private ImageView Back_return_01;
 
     @Override
     protected int getLayoutId() {
@@ -18,7 +18,7 @@ public class ChangpingJianYiActivity extends BaseActivity {
 
     @Override
     protected void findViewById() {
-        Back_return = (ImageView)findViewById(R.id.Back_return);
+        Back_return_01 = (ImageView)findViewById(R.id.Back_return_01);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ChangpingJianYiActivity extends BaseActivity {
 
     @Override
     protected void loadData() {
-        Back_return.setOnClickListener(new View.OnClickListener() {
+        Back_return_01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

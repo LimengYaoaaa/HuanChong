@@ -5,9 +5,10 @@
     tools:context="com.jiyun.huanchong.ui.activity.order.fragment.InfostercareFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="wrap_content"
+        android:id="@+id/infolist"
+        ></ListView>
 </FrameLayout>

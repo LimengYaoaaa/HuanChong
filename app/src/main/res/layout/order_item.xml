@@ -1,18 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:orientation="horizontal">
-    <ImageView
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10px"
+        android:layout_marginBottom="10dp"
+        >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/orderiv_demo1"
-        android:src="@mipmap/back_gray"
+        android:src="@mipmap/exclamation"
+
+
         />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/relate"
+        android:id="@+id/orderiv_demo2"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/orderiv_demo1"
+        />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/orderiv_demo3"
+        android:src="@mipmap/exclamation"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/orderiv_demo2"
         />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:src="@mipmap/enter"
+            android:id="@+id/orderiv_demo4"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待确认"
+            android:id="@+id/ordertv_demo1"
+            android:textSize="20dp"
+        android:layout_toLeftOf="@+id/orderiv_demo4"
+            android:layout_centerVertical="true"
+
+            />
+
+    </RelativeLayout>
 
 </LinearLayout>

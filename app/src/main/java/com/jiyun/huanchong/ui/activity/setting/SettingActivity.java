@@ -21,7 +21,7 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void findViewById() {
         Product = (RelativeLayout)findViewById(R.id.Product);
-        Back_return = (ImageView)findViewById(R.id.Back_return_01);
+        Back_return = (ImageView)findViewById(R.id.Back_return);
 
 
 

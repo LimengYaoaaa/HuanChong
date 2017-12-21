@@ -1,54 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jiyun.huanchong">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
-        android:name=".app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- 设置环信应用的AppKey -->
-        <meta-data android:name="EASEMOB_APPKEY"  android:value="1123170831115139#huanchong" />
-        <!-- 声明SDK所需的service SDK核心功能-->
-        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
-        <service android:name="com.hyphenate.chat.EMJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true"
-            />
-        <!-- 声明SDK所需的receiver -->
-        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
-            </intent-filter>
-            <!-- 可选filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>
-
         <activity android:name=".ui.activity.start.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,43 +22,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.zaaach.citypicker.CityPickerActivity"
-            android:theme="@style/CityPicker.NoActionBar"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-
-
         <activity android:name=".ui.activity.home.HomeActivity" />
         <activity android:name=".ui.activity.home.CityPickerActivity" />
-        <activity android:name=".ui.activity.login.RegisterActivity"></activity>
-        <activity android:name=".ui.activity.login.BindPhoneActivity"></activity>
-        <activity android:name=".ui.activity.news.ChatInterfaceActivity"></activity>
-
-        <activity android:name=".ui.activity.login.LoginActivity"></activity>
-        <activity android:name=".ui.activity.fosterteacher.FosterteacherActivity"></activity>
-        <activity android:name=".ui.activity.konw.KonwActivity"></activity>
-        <activity android:name=".ui.activity.news.NewsActivity"></activity>
-        <activity android:name=".ui.activity.order.OrderActivity"></activity>
-        <activity android:name=".ui.activity.order.OrderdetailsActivity"></activity>
-        <activity android:name=".ui.activity.order.EvaluatessuccessActivity"></activity>
-        <activity android:name=".ui.activity.personalInfomation.PersonalInfomationActivity"></activity>
-        <activity android:name=".ui.activity.personalInfomation.UpdateAddressActivity"></activity>
-        <activity android:name=".ui.activity.personalInfomation.UpdateUserNameActivity"></activity>
-        <activity android:name=".ui.activity.pet.AddPetActivity"></activity>
-        <activity android:name=".ui.activity.pet.PetActivity"></activity>
-        <activity android:name=".ui.activity.pet.PetMianYiActivity"></activity>
-        <activity android:name=".ui.activity.pet.PetTypeActivity"></activity>
-        <activity android:name=".ui.activity.setting.SettingActivity"></activity>
-        <activity android:name=".ui.activity.wallet.WalletActivity"></activity>
-        <activity android:name=".ui.activity.wallet.ProposalActivity"></activity>
-
+        <activity android:name=".ui.activity.login.RegisterActivity" />
+        <activity android:name=".ui.activity.login.BindPhoneActivity" />
+        <activity android:name=".ui.activity.login.LoginActivity" />
+        <activity android:name=".ui.activity.setting.SettingActivity" />
+        <activity android:name=".ui.activity.setting.ChangpingJianYiActivity" />
+        <activity android:name=".ui.activity.fosterteacher.FosterteacherActivity" />
+        <activity android:name=".ui.activity.konw.KonwActivity" />
+        <activity android:name=".ui.activity.news.NewsActivity" />
+        <activity android:name=".ui.activity.news.ChatInterfaceActivity" />
+        <activity android:name=".ui.activity.order.OrderActivity" />
+        <activity android:name=".ui.activity.order.OrderdetailsActivity" />
+        <activity android:name=".ui.activity.order.EvaluatessuccessActivity" />
+        <activity android:name=".ui.activity.order.Details_01Activity" />
+        <activity android:name=".ui.activity.order.Details_02Activity" />
+        <activity android:name=".ui.activity.order.Details_03Activity" />
+        <activity android:name=".ui.activity.personalInfomation.PersonalInfomationActivity" />
+        <activity android:name=".ui.activity.personalInfomation.UpdateAddressActivity" />
+        <activity android:name=".ui.activity.personalInfomation.UpdateUserNameActivity" />
+        <activity android:name=".ui.activity.pet.AddPetActivity" />
+        <activity android:name=".ui.activity.pet.PetActivity" />
+        <activity android:name=".ui.activity.pet.PetMianYiActivity" />
+        <activity android:name=".ui.activity.pet.PetTypeActivity" />
+        <activity android:name=".ui.activity.setting.SettingActivity" />
+        <activity android:name=".ui.activity.wallet.WalletActivity" />
+        <activity android:name=".ui.activity.wallet.ProposalActivity" />
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
-            android:theme="@style/CityPicker.NoActionBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:theme="@style/CityPicker.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".ui.activity.setting.ChangpingJianYiActivity" />
+        <activity android:name=".ui.activity.order.DetailsActivity" />
+        <activity android:name=".ui.activity.order.EvaluateActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+
 </manifest>

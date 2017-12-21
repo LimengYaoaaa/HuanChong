@@ -67,7 +67,8 @@ public class MyAdapter_01  extends BaseAdapter {
         }
         Glide.with(context)
                 .load(list.get(i).getPetTypeImage())
-                .transform(new CircleBitmapTransformation(context)).into(holder.imageView);
+                .transform(new CircleBitmapTransformation(context))
+                .into(holder.imageView);
 
 
 
