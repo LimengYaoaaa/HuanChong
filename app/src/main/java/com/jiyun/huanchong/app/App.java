@@ -2,7 +2,7 @@ package com.jiyun.huanchong.app;
 
 import android.app.Application;
 
-import com.hyphenate.easeui.EaseUI;
+
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -23,7 +23,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         UMShareAPI.get(this);
-        EaseUI.getInstance().init(this,null);
+        //EaseUI.getInstance().init(this,null);
         
     }
 }

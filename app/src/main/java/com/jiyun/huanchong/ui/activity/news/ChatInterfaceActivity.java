@@ -2,7 +2,7 @@ package com.jiyun.huanchong.ui.activity.news;
 
 import android.widget.FrameLayout;
 
-import com.hyphenate.easeui.ui.EaseChatFragment;
+//import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 
@@ -30,9 +30,9 @@ public class ChatInterfaceActivity extends BaseActivity {
     @Override
     protected void loadData() {
 //new出EaseChatFragment或其子类的实例
-        EaseChatFragment chatFragment = new EaseChatFragment();
-        //传入参数
-        chatFragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager().beginTransaction().add(R.id.frag, chatFragment).commit();
+//        EaseChatFragment chatFragment = new EaseChatFragment();
+//        //传入参数
+//        chatFragment.setArguments(getIntent().getExtras());
+//        getSupportFragmentManager().beginTransaction().add(R.id.frag, chatFragment).commit();
     }
 }

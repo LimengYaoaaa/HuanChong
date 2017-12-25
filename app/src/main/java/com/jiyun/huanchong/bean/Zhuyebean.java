@@ -6,7 +6,7 @@ import java.util.List;
  * Created by hp on 2017/12/18.
  */
 
-public class Zhuyebean {
+public class Zhuyebean  {
 
     /**
      * ret : true

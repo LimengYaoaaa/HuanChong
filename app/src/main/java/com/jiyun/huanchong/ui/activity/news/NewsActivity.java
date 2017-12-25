@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.hyphenate.chat.EMMessage;
-import com.hyphenate.easeui.EaseConstant;
+//import com.hyphenate.chat.EMMessage;
+//import com.hyphenate.easeui.EaseConstant;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 
@@ -41,8 +41,8 @@ private Button bt_chat;
         switch (v.getId()){
             case  R.id.bt_chat:
                 Intent intent=new Intent(NewsActivity.this,ChatInterfaceActivity.class);
-                intent.putExtra(EaseConstant.EXTRA_USER_ID,et_name.getText().toString().trim());
-                intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
+//                intent.putExtra(EaseConstant.EXTRA_USER_ID,et_name.getText().toString().trim());
+//                intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
                 startActivity(intent);
                 break;
         }

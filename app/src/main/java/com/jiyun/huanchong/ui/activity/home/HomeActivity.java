@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -33,6 +35,7 @@ import com.jiyun.huanchong.ui.activity.personalInfomation.PersonalInfomationActi
 import com.jiyun.huanchong.ui.activity.pet.PetActivity;
 import com.jiyun.huanchong.ui.activity.setting.SettingActivity;
 import com.jiyun.huanchong.ui.activity.wallet.WalletActivity;
+import com.jiyun.huanchong.ui.activity.xiangqing.XiangQingActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.jiyun.huanchong.utils.CircleBitmapTransformation;
 import com.zaaach.citypicker.CityPickerActivity;
@@ -44,7 +47,7 @@ import java.util.ArrayList;
  * Created by mengYao on 2017/12/17.
  */
 
-public class HomeActivity extends BaseActivity implements  View.OnClickListener,IView {
+public class HomeActivity extends BaseActivity implements  View.OnClickListener,IView ,CompoundButton.OnCheckedChangeListener {
     private DrawerLayout drawer_layout;
     private ImageView mMenuHead;
     private ImageView mPersonalCenter;
@@ -72,12 +75,25 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
     private String name;
     private String phone;
     private boolean isLogin;
+    private CheckBox NationalDay;
 
     private ListView zhuyelist;
     private Pserenter pserenter;
-    private  ArrayList<Zhuyebean.DescBean> list = new ArrayList<>();
-    private  ArrayList<ZhuYeBean_01.DescBean> list_01 = new ArrayList<>();
-    private final int UPDATEREQUESTCODE=101;
+    private ArrayList<Zhuyebean.DescBean> list = new ArrayList<>();
+    private ArrayList<ZhuYeBean_01.DescBean> list_01 = new ArrayList<>();
+    private final int UPDATEREQUESTCODE = 101;
+
+
+    private TextView Reset;
+    private CheckBox AutumnFestival;
+    private CheckBox DragonBoatFestival;
+    private CheckBox LaborDay;
+    private CheckBox QingmingFestival;
+    private CheckBox SpringFestival;
+    private CheckBox NewDan;
+    private CheckBox Shuttle;
+    private CheckBox shower;
+    private ImageView mMAP;
 
     @Override
     protected int getLayoutId() {
@@ -91,7 +107,8 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
         mPersonalCenter = (ImageView) findViewById(R.id.mPersonalCenter);
         mInfomation = (RelativeLayout) findViewById(R.id.mInfomation);
         mMenuHead = (ImageView) findViewById(R.id.mMenuHead);
-        zhuyelist = (ListView)findViewById(R.id.zhuyelist);
+        zhuyelist = (ListView) findViewById(R.id.zhuyelist);
+        mMAP = (ImageView)findViewById(R.id.mMap);
         mMenuName = (TextView) findViewById(R.id.mMenuName);
         mMenuPhone = (TextView) findViewById(R.id.mMenuPhone);
         mMessageContainer = (RelativeLayout) findViewById(R.id.mMessageContainer);
@@ -107,12 +124,25 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
         shaixuan = (ImageView) findViewById(R.id.shaixuan);
         mInfomation.setVisibility(View.GONE);
         mBtnSwitchUser.setVisibility(View.GONE);
+
+        mMAP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(HomeActivity.this, CityPickerActivity.class),
+                        REQUEST_CODE_PICK_CITY);
+            }
+        });
+
+
+
+
+
         SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
         username = userInfo.getString("username", null);
         String phone = userInfo.getString("userphone", null);
         iconurl = userInfo.getString("iconurl", null);
-        if (username !=null&&!username.equals("")&&phone!=null){
-            if (iconurl!=null){
+        if (username != null && !username.equals("") && phone != null) {
+            if (iconurl != null) {
                 Glide.with(this).load(iconurl).transform(new CircleBitmapTransformation(this)).into(mMenuHead);
             }
             mMenuName.setText(username);
@@ -120,15 +150,15 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
             mMenuPhone.setText(phone);
             mInfomation.setVisibility(View.VISIBLE);
             mBtnSwitchUser.setVisibility(View.VISIBLE);
-            isLogin=true;
+            isLogin = true;
         }
-        if (iconurl !=null&& name !=null&&!iconurl.equals("")&&!name.equals("")){
+        if (iconurl != null && name != null && !iconurl.equals("") && !name.equals("")) {
             Glide.with(this).load(this.iconurl).into(mMenuHead);
             mMenuName.setText(name);
             mNoLoginContainer.setVisibility(View.GONE);
             mInfomation.setVisibility(View.VISIBLE);
             mBtnSwitchUser.setVisibility(View.VISIBLE);
-            isLogin=true;
+            isLogin = true;
         }
         mPersonalCenter.setOnClickListener(HomeActivity.this);
         mInfomation.setOnClickListener(this);
@@ -156,61 +186,63 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
                     mPopWindow.setContentView(contentView);
                     //设置各个控件的点击响应
                     listview = (ListView) contentView.findViewById(R.id.listview);
+
                     final ArrayList<Person> strings = new ArrayList<>();
                     strings.add(new Person("附近优选"));
                     strings.add(new Person("好评优选"));
                     strings.add(new Person("订单优选"));
                     strings.add(new Person("价格从高到低"));
                     strings.add(new Person("价格从低到高"));
+
                     final ListAdapter listAdapter = new ListAdapter(strings, HomeActivity.this);
                     listview.setAdapter(listAdapter);
 
-                   listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                       int currentNum = -1;
-                       @Override
-                       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        int currentNum = -1;
 
-                           String title = strings.get(i).getTitle();
-                           if(title.equals("附近优先")){
-                               pserenter.get("0","40.116384","116.250374","10","distance asc");
-                           }else if (title.equals("好评优先")){
-                               pserenter.get("0","40.116384","116.250374","10","score desc");
-                           }else if(title.equals("订单优先")){
-                               pserenter.get("0","40.116384","116.250374","10","orderCount desc");
-                           }else if (title.equals("价格从低到高")){
-                               pserenter.get("0","40.116384","116.250374","10","price asc");
-                           }else if(title.equals("价格从高到低")){
-                               pserenter.get("0","40.116384","116.250374","10","price desc");
-                           }
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-
-                           for(Person person : strings){ //遍历list集合中的数据
-                               person.setChecked(false);//全部设为未选中
-                           }
-
-                           if(currentNum == -1){ //选中
-                               strings.get(i).setChecked(true);
-                               currentNum = i;
-                           }else if(currentNum == i){ //同一个item选中变未选中
-                               for(Person person : strings){
-                                   person.setChecked(false);
-                               }
-                               currentNum = -1;
-                           }else if(currentNum != i){ //不是同一个item选中当前的，去除上一个选中的
-                               for(Person person : strings){
-                                   person.setChecked(false);
-                               }
-                               strings.get(i).setChecked(true);
-                               currentNum = i;
-                           }
-                           Toast.makeText(HomeActivity.this,strings.get(i).getTitle(),Toast.LENGTH_SHORT).show();
-                           listAdapter.notifyDataSetChanged();//刷新adapter
+                            String title = strings.get(i).getTitle();
+                            if (title.equals("附近优先")) {
+                                pserenter.get("0", "40.116384", "116.250374", "10", "distance asc");
+                            } else if (title.equals("好评优先")) {
+                                pserenter.get("0", "40.116384", "116.250374", "10", "score desc");
+                            } else if (title.equals("订单优先")) {
+                                pserenter.get("0", "40.116384", "116.250374", "10", "orderCount desc");
+                            } else if (title.equals("价格从低到高")) {
+                                pserenter.get("0", "40.116384", "116.250374", "10", "price asc");
+                            } else if (title.equals("价格从高到低")) {
+                                pserenter.get("0", "40.116384", "116.250374", "10", "price desc");
+                            }
 
 
-                      }
+                            for (Person person : strings) { //遍历list集合中的数据
+                                person.setChecked(false);//全部设为未选中
+                            }
 
-                   });
+                            if (currentNum == -1) { //选中
+                                strings.get(i).setChecked(true);
+                                currentNum = i;
+                            } else if (currentNum == i) { //同一个item选中变未选中
+                                for (Person person : strings) {
+                                    person.setChecked(false);
+                                }
+                                currentNum = -1;
+                            } else if (currentNum != i) { //不是同一个item选中当前的，去除上一个选中的
+                                for (Person person : strings) {
+                                    person.setChecked(false);
+                                }
+                                strings.get(i).setChecked(true);
+                                currentNum = i;
+                            }
+                            Toast.makeText(HomeActivity.this, strings.get(i).getTitle(), Toast.LENGTH_SHORT).show();
+                            listAdapter.notifyDataSetChanged();//刷新adapter
+
+
+                        }
+
+                    });
 
 
                     mPopWindow.setBackgroundDrawable(new ColorDrawable(0x000000));
@@ -244,7 +276,7 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
                     mPopWindow = new PopupWindow(contentView, DrawerLayout.LayoutParams.WRAP_CONTENT, DrawerLayout.LayoutParams.WRAP_CONTENT);
                     mPopWindow.setContentView(contentView);
                     //设置各个控件的点击响应
-                    listview_01 = (ListView)contentView.findViewById(R.id.listview_01);
+                    listview_01 = (ListView) contentView.findViewById(R.id.listview_01);
 
 
                     final ArrayList<Person> strings = new ArrayList<>();
@@ -260,41 +292,39 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
 
                     listview_01.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         int currentNum = -1;
+
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                            pserenter.getlist("0","10","");
+                            pserenter.getlist("0", "10", "");
 
 
-
-
-                            for(Person person : strings){ //遍历list集合中的数据
+                            for (Person person : strings) { //遍历list集合中的数据
                                 person.setChecked(false);//全部设为未选中
                             }
 
-                            if(currentNum == -1){ //选中
+                            if (currentNum == -1) { //选中
                                 strings.get(i).setChecked(true);
                                 currentNum = i;
-                            }else if(currentNum == i){ //同一个item选中变未选中
-                                for(Person person : strings){
+                            } else if (currentNum == i) { //同一个item选中变未选中
+                                for (Person person : strings) {
                                     person.setChecked(false);
                                 }
                                 currentNum = -1;
-                            }else if(currentNum != i){ //不是同一个item选中当前的，去除上一个选中的
-                                for(Person person : strings){
+                            } else if (currentNum != i) { //不是同一个item选中当前的，去除上一个选中的
+                                for (Person person : strings) {
                                     person.setChecked(false);
                                 }
                                 strings.get(i).setChecked(true);
                                 currentNum = i;
                             }
-                            Toast.makeText(HomeActivity.this,strings.get(i).getTitle(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HomeActivity.this, strings.get(i).getTitle(), Toast.LENGTH_SHORT).show();
                             listAdapter.notifyDataSetChanged();//刷新adapter
 
 
                         }
 
                     });
-
 
 
                     mPopWindow.setBackgroundDrawable(new ColorDrawable(0x000000));
@@ -313,6 +343,7 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
         shaixuan.setOnClickListener(new View.OnClickListener() {
 
 
+
             @Override
             public void onClick(View view) {
 
@@ -322,8 +353,43 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
                     mPopWindow = new PopupWindow(contentView, DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
                     mPopWindow.setContentView(contentView);
                     //设置各个控件的点击响应
-                    TextView tv1 = (TextView) contentView.findViewById(R.id.mSelect);
-                    tv2 = (TextView) contentView.findViewById(R.id.select_city);
+                    TextView tv1 = (TextView) contentView.findViewById(R.id.Choosecity);
+                    tv2 = (TextView) contentView.findViewById(R.id.Location);
+                    shower = (CheckBox) contentView.findViewById(R.id.shower);
+                    Shuttle = (CheckBox) contentView.findViewById(R.id.Shuttle);
+                    NewDan = (CheckBox) contentView.findViewById(R.id.NewDan);
+                    SpringFestival = (CheckBox) contentView.findViewById(R.id.SpringFestival);
+                    QingmingFestival = (CheckBox) contentView.findViewById(R.id.QingmingFestival);
+                    LaborDay = (CheckBox) contentView.findViewById(R.id.LaborDay);
+                    NationalDay = (CheckBox) contentView.findViewById(R.id.NationalDay);
+                    DragonBoatFestival = (CheckBox) contentView.findViewById(R.id.DragonBoatFestival);
+                    AutumnFestival = (CheckBox) contentView.findViewById(R.id.AutumnFestival);
+                    Reset = (TextView) contentView.findViewById(R.id.Reset);
+                    shower.setOnCheckedChangeListener(HomeActivity.this);
+                    Shuttle.setOnCheckedChangeListener(HomeActivity.this);
+                    LaborDay.setOnCheckedChangeListener(HomeActivity.this);
+                    NewDan.setOnCheckedChangeListener(HomeActivity.this);
+                    NationalDay.setOnCheckedChangeListener(HomeActivity.this);
+                    SpringFestival.setOnCheckedChangeListener(HomeActivity.this);
+                    QingmingFestival.setOnCheckedChangeListener(HomeActivity.this);
+                    DragonBoatFestival.setOnCheckedChangeListener(HomeActivity.this);
+                    AutumnFestival.setOnCheckedChangeListener(HomeActivity.this);
+                    Reset.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            shower.setChecked(false);
+                            Shuttle.setChecked(false);
+                            NewDan.setChecked(false);
+                            SpringFestival.setChecked(false);
+                            QingmingFestival.setChecked(false);
+                            DragonBoatFestival.setChecked(false);
+                            AutumnFestival.setChecked(false);
+                            LaborDay.setChecked(false);
+                            NationalDay.setChecked(false);
+                        }
+                    });
+
+
                     tv1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -364,8 +430,8 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
                 tv2.setText("当前选择：" + city);
             }
         }
-        if (requestCode==UPDATEREQUESTCODE){
-            if (data!=null){
+        if (requestCode == UPDATEREQUESTCODE) {
+            if (data != null) {
                 String head = data.getStringExtra("head");
                 String name = data.getStringExtra("name");
                 String phone = data.getStringExtra("phone");
@@ -378,9 +444,8 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
 
     @Override
     protected void init() {
-        SharedPreferences home = getSharedPreferences("home", MODE_PRIVATE);
-        home.getInt("foster",1);
-        pserenter.get("0","116.249706","40.116585","10","distance asc");
+
+        pserenter.get("0", "116.249706", "40.116585", "10", "distance asc");
 
 
     }
@@ -390,10 +455,10 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
         mPersonalCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(drawer_layout.isDrawerOpen(Gravity.LEFT)){
+                if (drawer_layout.isDrawerOpen(Gravity.LEFT)) {
                     drawer_layout.closeDrawer(Gravity.LEFT);
 
-                }else {
+                } else {
                     drawer_layout.openDrawer(Gravity.LEFT);
                 }
 
@@ -411,49 +476,49 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
 //        name = disanfangInfo.getString("name", null);
         switch (v.getId()) {
             case R.id.mInfomation:
-                startActivityForResult(new Intent(this, PersonalInfomationActivity.class),UPDATEREQUESTCODE);
+                startActivityForResult(new Intent(this, PersonalInfomationActivity.class), UPDATEREQUESTCODE);
                 break;
             case R.id.mMessageContainer:
-                if (isLogin){
+                if (isLogin) {
                     startActivity(new Intent(this, NewsActivity.class));
-                }else{
-                    startActivity(new Intent(this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginActivity.class));
                 }
                 break;
             case R.id.mPetContainer:
-                if (isLogin){
+                if (isLogin) {
                     startActivity(new Intent(this, PetActivity.class));
-                }else{
-                    startActivity(new Intent(this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginActivity.class));
                 }
                 break;
             case R.id.mOrderContainer:
 
-                if (isLogin){
+                if (isLogin) {
                     startActivity(new Intent(this, OrderActivity.class));
-                }else{
-                    startActivity(new Intent(this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginActivity.class));
                 }
                 break;
             case R.id.mWalletContainer:
-                if (isLogin){
+                if (isLogin) {
                     startActivity(new Intent(this, WalletActivity.class));
-                }else{
-                    startActivity(new Intent(this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginActivity.class));
                 }
                 break;
             case R.id.mKonwContainer:
-                if (isLogin){
+                if (isLogin) {
                     startActivity(new Intent(this, KonwActivity.class));
-                }else{
-                    startActivity(new Intent(this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginActivity.class));
                 }
                 break;
             case R.id.mSettingContainer:
-                if (isLogin){
+                if (isLogin) {
                     startActivity(new Intent(this, SettingActivity.class));
-                }else{
-                    startActivity(new Intent(this,LoginActivity.class));
+                } else {
+                    startActivity(new Intent(this, LoginActivity.class));
                 }
                 break;
             case R.id.mBtnSwitchUser:
@@ -462,17 +527,33 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
             case R.id.mNoLoginContainer:
                 startActivity(new Intent(this, LoginActivity.class));
                 break;
+            case  R.id.Reset:
+
+
+                break;
+
+
         }
     }
 
 
     @Override
-    public void getlist(ArrayList<Zhuyebean.DescBean> zhuyebean) {
+    public void getlist(final ArrayList<Zhuyebean.DescBean> zhuyebean) {
         list.clear();
         list.addAll(zhuyebean);
+        final Zhuyebean zhuyebean1 = new Zhuyebean();
         MyAdapter myAdapter = new MyAdapter(list, this);
         zhuyelist.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
+        zhuyelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(HomeActivity.this, XiangQingActivity.class);
+//                intent.putExtra("aa",list);
+
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -484,7 +565,74 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
         MyAdapter_01 myAdapter = new MyAdapter_01(list_01, this);
         zhuyelist.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
+
+    }
+
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (shower.isChecked()) {
+
+            shower.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            shower.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (Shuttle.isChecked()) {
+
+            Shuttle.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            Shuttle.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (NewDan.isChecked()) {
+
+            NewDan.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            NewDan.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (SpringFestival.isChecked()) {
+
+            SpringFestival.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            SpringFestival.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (QingmingFestival.isChecked()) {
+
+            QingmingFestival.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            QingmingFestival.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (DragonBoatFestival.isChecked()) {
+
+            DragonBoatFestival.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            DragonBoatFestival.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (AutumnFestival.isChecked()) {
+
+            AutumnFestival.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            AutumnFestival.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (LaborDay.isChecked()) {
+
+            LaborDay.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            LaborDay.setBackgroundResource(R.drawable.login_item_shap);
+        }
+        if (NationalDay.isChecked()) {
+
+            NationalDay.setBackgroundResource(R.drawable.login_btn_shape);
+        } else {
+            NationalDay.setBackgroundResource(R.drawable.login_item_shap);
+        }
+
+
+
+
     }
 
 
 }
+
+
+

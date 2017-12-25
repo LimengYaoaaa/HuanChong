@@ -7,9 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.exceptions.HyphenateException;
+//
+//import com.hyphenate.chat.EMClient;
+//import com.hyphenate.exceptions.HyphenateException;
 import com.jiyun.huanchong.R;
 import com.jiyun.huanchong.presenter.RegisterPresenter;
 import com.jiyun.huanchong.presenter.RegisterPresenterImpl;
@@ -117,13 +117,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        EMClient.getInstance().createAccount(registerBean.getResult().getUserPhone()+"",registerBean.getResult().getPassword()+"");
-                    } catch (HyphenateException e) {
-                        e.printStackTrace();
-
-                    }
-                }
+//                    try {
+//                        EMClient.getInstance().createAccount(registerBean.getResult().getUserPhone()+"",registerBean.getResult().getPassword()+"");
+//                    } catch (HyphenateException e) {
+//                        e.printStackTrace();
+//
+//                    }
+               }
             }).start();
 
 
