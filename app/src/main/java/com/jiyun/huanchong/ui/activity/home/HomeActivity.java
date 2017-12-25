@@ -35,12 +35,9 @@ import com.jiyun.huanchong.ui.activity.setting.SettingActivity;
 import com.jiyun.huanchong.ui.activity.wallet.WalletActivity;
 import com.jiyun.huanchong.ui.base.BaseActivity;
 import com.jiyun.huanchong.utils.CircleBitmapTransformation;
-import com.jiyun.huanchong.utils.PermissionUtils;
 import com.zaaach.citypicker.CityPickerActivity;
 
 import java.util.ArrayList;
-
-import static com.jiyun.huanchong.constants.Constants.REQUESTCODE;
 
 
 /**
@@ -159,14 +156,12 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
                     mPopWindow.setContentView(contentView);
                     //设置各个控件的点击响应
                     listview = (ListView) contentView.findViewById(R.id.listview);
-
                     final ArrayList<Person> strings = new ArrayList<>();
                     strings.add(new Person("附近优选"));
                     strings.add(new Person("好评优选"));
                     strings.add(new Person("订单优选"));
                     strings.add(new Person("价格从高到低"));
                     strings.add(new Person("价格从低到高"));
-
                     final ListAdapter listAdapter = new ListAdapter(strings, HomeActivity.this);
                     listview.setAdapter(listAdapter);
 
@@ -383,8 +378,9 @@ public class HomeActivity extends BaseActivity implements  View.OnClickListener,
 
     @Override
     protected void init() {
-
-     pserenter.get("0","116.249706","40.116585","10","distance asc");
+        SharedPreferences home = getSharedPreferences("home", MODE_PRIVATE);
+        home.getInt("foster",1);
+        pserenter.get("0","116.249706","40.116585","10","distance asc");
 
 
     }
